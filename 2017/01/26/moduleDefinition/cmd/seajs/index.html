@@ -18,8 +18,8 @@
   
     
     
-  <script src="/blog/lib/pace/pace.min.js?v=1.0.2"></script>
-  <link href="/blog/lib/pace/pace-theme-bounce.min.css?v=1.0.2" rel="stylesheet">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-bounce.min.css?v=1.0.2" rel="stylesheet">
 
 
 
@@ -47,7 +47,7 @@
 
   
   
-  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -55,21 +55,21 @@
 
 
 
-<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-hwq.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-hwq.png?v=5.1.4">
 
 
-  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
 
 
 
@@ -90,7 +90,7 @@
 <meta name="keywords" content="CMD规范,模块化,seajs">
 <meta property="og:type" content="article">
 <meta property="og:title" content="seajs教程">
-<meta property="og:url" content="https://elenhong.gitee.io/blog/2017/01/26/moduleDefinition/cmd/seajs/index.html">
+<meta property="og:url" content="http://hongwenqing.com/2017/01/26/moduleDefinition/cmd/seajs/index.html">
 <meta property="og:site_name" content="Hong WenQing&#39;s Blog">
 <meta property="og:description" content="本文介绍 require.js(AMD) 的近亲 sea.js(CMD) 的基本使用，其基于  CMD(Common Module Definition)规范。该规范明确了模块的基本书写格式和基本交互规则。">
 <meta property="og:locale" content="zh-Hans">
@@ -104,7 +104,7 @@
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    root: '/blog/',
+    root: '/',
     scheme: 'Gemini',
     version: '5.1.4',
     sidebar: {"position":"right","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
@@ -127,7 +127,7 @@
 
 
 
-  <link rel="canonical" href="https://elenhong.gitee.io/blog/2017/01/26/moduleDefinition/cmd/seajs/"/>
+  <link rel="canonical" href="http://hongwenqing.com/2017/01/26/moduleDefinition/cmd/seajs/"/>
 
 
 
@@ -173,7 +173,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/blog/"  class="brand" rel="start">
+      <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Hong WenQing's Blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -201,7 +201,7 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/blog/" rel="section">
+          <a href="/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
@@ -211,7 +211,7 @@
       
         
         <li class="menu-item menu-item-about">
-          <a href="/blog/about/" rel="section">
+          <a href="/about/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
@@ -221,7 +221,7 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/blog/tags/" rel="section">
+          <a href="/tags/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
@@ -231,7 +231,7 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/blog/categories/" rel="section">
+          <a href="/categories/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
@@ -241,7 +241,7 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/blog/archives/" rel="section">
+          <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
@@ -316,12 +316,12 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://elenhong.gitee.io/blog/blog/2017/01/26/moduleDefinition/cmd/seajs/">
+    <link itemprop="mainEntityOfPage" href="http://hongwenqing.com/2017/01/26/moduleDefinition/cmd/seajs/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="elenh">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/uploads/avatar.gif">
+      <meta itemprop="image" content="/uploads/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -368,7 +368,7 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/模块化相关/" itemprop="url" rel="index">
+                  <a href="/categories/模块化相关/" itemprop="url" rel="index">
                     <span itemprop="name">模块化相关</span>
                   </a>
                 </span>
@@ -434,7 +434,7 @@
 <p><code>Sea.js</code> 遵循的是 <code>CMD</code> 规范，会在接下来的文档中详细阐述。</p>
 <h1 id="define-函数定义模块"><a href="#define-函数定义模块" class="headerlink" title="define 函数定义模块"></a>define 函数定义模块</h1><p><code>seajs</code> 使用 <code>define</code> 函数来定义一个模块。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">define(<span class="function"><span class="keyword">function</span>(<span class="params"> require, exports , module </span>)</span>&#123;</span><br><span class="line">  <span class="comment">// 引入依赖的 foo 模块</span></span><br><span class="line">  <span class="keyword">var</span> foo = <span class="built_in">require</span>(<span class="string">'/some/foo'</span>);</span><br><span class="line">  <span class="comment">// do something ...</span></span><br><span class="line">  <span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    <span class="comment">// 导出一些接口</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p><code>define()</code> 函数的详细介绍请参考： <a class="fc-danger" href="https://hongwenqing.com/2017/01/28/moduleDefinition/cmd/seajs-define/" target="_blank" rel="noopener"> seajs之define函数 </a>。</p>
+<p><code>define()</code> 函数的详细介绍请参考： <a class="fc-danger" href="https://hongwenqing.com/2017/01/28/moduleDefinition/cmd/seajs-define/"> seajs之define函数 </a>。</p>
 <h1 id="对外导出接口"><a href="#对外导出接口" class="headerlink" title="对外导出接口"></a>对外导出接口</h1><p><code>seajs</code> 中，对外导出接口的方式有 3 种。</p>
 <ol>
 <li>使用 <code>exports</code> 导出接口。</li>
@@ -457,7 +457,7 @@
 <p>如上代码，加载 <code>main</code> 模块。</p>
 <h1 id="seajs-config-配置"><a href="#seajs-config-配置" class="headerlink" title="seajs.config 配置"></a>seajs.config 配置</h1><p><code>seajs</code> 也是可配置的，使用 <code>seajs.config()</code> 函数进行配置。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">seajs.config(&#123;</span><br><span class="line">  base: <span class="string">'/'</span>,</span><br><span class="line">  alias: &#123;&#125;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>具体的配置项信息，请参考：<a class="fc-danger" href="https://hongwenqing.com/2017/01/27/moduleDefinition/cmd/seajs-config/" target="_blank" rel="noopener">seajs之config</a>。</p>
+<p>具体的配置项信息，请参考：<a class="fc-danger" href="https://hongwenqing.com/2017/01/27/moduleDefinition/cmd/seajs-config/">seajs之config</a>。</p>
 <h1 id="非CMD模块处理"><a href="#非CMD模块处理" class="headerlink" title="非CMD模块处理"></a>非CMD模块处理</h1><p>没错，<code>sea.js</code> 同样会面对那些非 CMD 规范的模块引用问题，解决方式如下。</p>
 <ol>
 <li>在 <code>sea.js-2.1.0</code> 之前的版本，可以使用 <code>shim</code> 插件来解决非 CMD 模块引用问题。例如：jquery，其使用的是标准的 AMD 模块定义方式，所以想要使用 <code>sea.js</code> 加载她，那么你必须对其进行特殊处理。</li>
@@ -502,11 +502,11 @@
       
         <div class="post-tags">
           
-            <a href="/blog/tags/CMD规范/" rel="tag"># CMD规范</a>
+            <a href="/tags/CMD规范/" rel="tag"># CMD规范</a>
           
-            <a href="/blog/tags/模块化/" rel="tag"># 模块化</a>
+            <a href="/tags/模块化/" rel="tag"># 模块化</a>
           
-            <a href="/blog/tags/seajs/" rel="tag"># seajs</a>
+            <a href="/tags/seajs/" rel="tag"># seajs</a>
           
         </div>
       
@@ -519,7 +519,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2017/01/11/moduleDefinition/amd/requirejs/" rel="next" title="requirejs教程">
+              <a href="/2017/01/11/moduleDefinition/amd/requirejs/" rel="next" title="requirejs教程">
                 <i class="fa fa-chevron-left"></i> requirejs教程
               </a>
             
@@ -529,7 +529,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/blog/2017/01/27/moduleDefinition/cmd/seajs-config/" rel="prev" title="seajs之config">
+              <a href="/2017/01/27/moduleDefinition/cmd/seajs-config/" rel="prev" title="seajs之config">
                 seajs之config <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -609,7 +609,7 @@
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image"
-                src="/blog/uploads/avatar.gif"
+                src="/uploads/avatar.gif"
                 alt="elenh" />
             
               <p class="site-author-name" itemprop="name">elenh</p>
@@ -621,7 +621,7 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/blog/archives/">
+                <a href="/archives/">
               
                   <span class="site-state-item-count">56</span>
                   <span class="site-state-item-name">日志</span>
@@ -633,7 +633,7 @@
               
               
               <div class="site-state-item site-state-categories">
-                <a href="/blog/categories/index.html">
+                <a href="/categories/index.html">
                   <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
@@ -644,7 +644,7 @@
               
               
               <div class="site-state-item site-state-tags">
-                <a href="/blog/tags/index.html">
+                <a href="/tags/index.html">
                   <span class="site-state-item-count">89</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
@@ -810,74 +810,74 @@
 
   
   
-    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
   
 
   
   
-    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
   
 
   
   
-    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
   
 
   
   
-    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
   
 
   
   
-    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
   
 
   
   
-    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
   
 
   
   
-    <script type="text/javascript" src="/blog/lib/three/three.min.js"></script>
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
   
 
   
   
-    <script type="text/javascript" src="/blog/lib/three/canvas_lines.min.js"></script>
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
   
-
-
-  
-
-
-  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/blog/js/src/affix.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/blog/js/src/schemes/pisces.js?v=5.1.4"></script>
-
-
-
-  
-  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
-
 
 
   
 
 
-  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
 
 
 
@@ -938,7 +938,7 @@
     } else if (/json$/i.test(search_path)) {
       isXml = false;
     }
-    var path = "/blog/" + search_path;
+    var path = "/" + search_path;
     // monitor main search box;
 
     var onPopupClose = function (e) {

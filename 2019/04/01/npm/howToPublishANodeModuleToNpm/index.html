@@ -18,8 +18,8 @@
   
     
     
-  <script src="/blog/lib/pace/pace.min.js?v=1.0.2"></script>
-  <link href="/blog/lib/pace/pace-theme-bounce.min.css?v=1.0.2" rel="stylesheet">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-bounce.min.css?v=1.0.2" rel="stylesheet">
 
 
 
@@ -47,7 +47,7 @@
 
   
   
-  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -55,21 +55,21 @@
 
 
 
-<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-hwq.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-hwq.png?v=5.1.4">
 
 
-  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
 
 
 
@@ -90,7 +90,7 @@
 <meta name="keywords" content="npm,node">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何发布一个自己的node模块到npm">
-<meta property="og:url" content="https://elenhong.gitee.io/blog/2019/04/01/npm/howToPublishANodeModuleToNpm/index.html">
+<meta property="og:url" content="http://hongwenqing.com/2019/04/01/npm/howToPublishANodeModuleToNpm/index.html">
 <meta property="og:site_name" content="Hong WenQing&#39;s Blog">
 <meta property="og:description" content="本文介绍如何创建一个自己的 node 模块，以及怎样发布到 npm ，与其他开发人员共享你的模块。">
 <meta property="og:locale" content="zh-Hans">
@@ -104,7 +104,7 @@
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    root: '/blog/',
+    root: '/',
     scheme: 'Gemini',
     version: '5.1.4',
     sidebar: {"position":"right","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
@@ -127,7 +127,7 @@
 
 
 
-  <link rel="canonical" href="https://elenhong.gitee.io/blog/2019/04/01/npm/howToPublishANodeModuleToNpm/"/>
+  <link rel="canonical" href="http://hongwenqing.com/2019/04/01/npm/howToPublishANodeModuleToNpm/"/>
 
 
 
@@ -173,7 +173,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/blog/"  class="brand" rel="start">
+      <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Hong WenQing's Blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -201,7 +201,7 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/blog/" rel="section">
+          <a href="/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
@@ -211,7 +211,7 @@
       
         
         <li class="menu-item menu-item-about">
-          <a href="/blog/about/" rel="section">
+          <a href="/about/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
@@ -221,7 +221,7 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/blog/tags/" rel="section">
+          <a href="/tags/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
@@ -231,7 +231,7 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/blog/categories/" rel="section">
+          <a href="/categories/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
@@ -241,7 +241,7 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/blog/archives/" rel="section">
+          <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
@@ -316,12 +316,12 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://elenhong.gitee.io/blog/blog/2019/04/01/npm/howToPublishANodeModuleToNpm/">
+    <link itemprop="mainEntityOfPage" href="http://hongwenqing.com/2019/04/01/npm/howToPublishANodeModuleToNpm/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="elenh">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/uploads/avatar.gif">
+      <meta itemprop="image" content="/uploads/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -368,7 +368,7 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/npm相关/" itemprop="url" rel="index">
+                  <a href="/categories/npm相关/" itemprop="url" rel="index">
                     <span itemprop="name">npm相关</span>
                   </a>
                 </span>
@@ -430,7 +430,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">elenh@elenh MINGW64 ~/Desktop/hello-npm-test</span><br><span class="line">$ npm init</span><br><span class="line">This utility will walk you through creating a package.json file.</span><br><span class="line">It only covers the most common items, and tries to guess sensible defaults.</span><br><span class="line"></span><br><span class="line">See `npm <span class="built_in">help</span> json` <span class="keyword">for</span> definitive documentation on these fields</span><br><span class="line">and exactly what they <span class="keyword">do</span>.</span><br><span class="line"></span><br><span class="line">Use `npm install &lt;pkg&gt;` afterwards to install a package and</span><br><span class="line">save it as a dependency <span class="keyword">in</span> the package.json file.</span><br><span class="line"></span><br><span class="line">Press ^C at any time to quit.</span><br><span class="line">package name: (hello-npm-test) hello-npm-test</span><br><span class="line">version: (1.0.0)</span><br><span class="line">description: a node <span class="built_in">test</span> module <span class="built_in">which</span> will be published to npm.</span><br><span class="line">entry point: (index.js)</span><br><span class="line"><span class="built_in">test</span> <span class="built_in">command</span>:</span><br><span class="line">git repository:</span><br><span class="line">keywords: npm node <span class="built_in">test</span></span><br><span class="line">author: elenh</span><br><span class="line">license: (ISC)</span><br><span class="line">About to write to C:\Users\yisiw\Desktop\hello-npm-test\package.json:</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"name"</span>: <span class="string">"hello-npm-test"</span>,</span><br><span class="line">  <span class="string">"version"</span>: <span class="string">"1.0.0"</span>,</span><br><span class="line">  <span class="string">"description"</span>: <span class="string">"a node test module which will be published to npm."</span>,</span><br><span class="line">  <span class="string">"main"</span>: <span class="string">"index.js"</span>,</span><br><span class="line">  <span class="string">"scripts"</span>: &#123;</span><br><span class="line">    <span class="string">"test"</span>: <span class="string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"keywords"</span>: [</span><br><span class="line">    <span class="string">"npm"</span>,</span><br><span class="line">    <span class="string">"node"</span>,</span><br><span class="line">    <span class="string">"test"</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="string">"author"</span>: <span class="string">"elenh"</span>,</span><br><span class="line">  <span class="string">"license"</span>: <span class="string">"ISC"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Is this ok? (yes) y</span><br></pre></td></tr></table></figure>
 <p>具体的意思就是确定 <code>package.json</code> 文件中的一些必要字段信息。比如，包的名字 <code>name</code> ，包的语义化版本号 <code>version</code> ，包的描述信息 <code>description</code>，包的入口点 （entry point）<code>main</code>，测试脚本命令 （test command）<code>script</code>，git 仓库地址 （git repository），在 <code>npm</code> 中的搜索关键字 <code>keywords</code> ，包的作者名 <code>author</code> 以及该包的开源许可证类别 <code>license</code>。</p>
 <blockquote>
-<p>注：如果直接按回车的话，表示直接使用默认值设置该字段，但是作为一个即将要把包发布到 <code>npm</code> 的模块分享者来说，请仔细填写这些信息。因为这关系到该模块是否能正常使用（main 入口点），或者说别的开发者能够方便检索到你的模块（keywords, description）。很关键的一点是，你的 <code>version</code> 字段一定要遵循 <code>npm</code> 的语义化版本定义规则。以便使用此模块的开发者知道使用该模块的哪个版本。关于 <code>语义化版本规则</code> 请参考本博客的另一篇文章 <a href="http://hongwenqing.com/2019/03/14/npm/npm/" class="fc-danger" target="_blank" rel="noopener">npm使用说明</a>。</p>
+<p>注：如果直接按回车的话，表示直接使用默认值设置该字段，但是作为一个即将要把包发布到 <code>npm</code> 的模块分享者来说，请仔细填写这些信息。因为这关系到该模块是否能正常使用（main 入口点），或者说别的开发者能够方便检索到你的模块（keywords, description）。很关键的一点是，你的 <code>version</code> 字段一定要遵循 <code>npm</code> 的语义化版本定义规则。以便使用此模块的开发者知道使用该模块的哪个版本。关于 <code>语义化版本规则</code> 请参考本博客的另一篇文章 <a href="http://hongwenqing.com/2019/03/14/npm/npm/" class="fc-danger">npm使用说明</a>。</p>
 </blockquote>
 <h2 id="编写模块"><a href="#编写模块" class="headerlink" title="编写模块"></a>编写模块</h2><p>现在，我们已经初始化好了 <code>package.json</code> 文件。是时候创建模块文件了。在 <code>hello-npm-test</code> 文件夹中新建一个名为 <code>index.js</code> 的文件。并在里面写入如下代码：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> (<span class="params"> str </span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log( <span class="string">'hello'</span> + str )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -552,9 +552,9 @@
       
         <div class="post-tags">
           
-            <a href="/blog/tags/npm/" rel="tag"># npm</a>
+            <a href="/tags/npm/" rel="tag"># npm</a>
           
-            <a href="/blog/tags/node/" rel="tag"># node</a>
+            <a href="/tags/node/" rel="tag"># node</a>
           
         </div>
       
@@ -567,8 +567,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2019/03/25/css/css3-grid/" rel="next" title="CSS Grid网格布局">
-                <i class="fa fa-chevron-left"></i> CSS Grid网格布局
+              <a href="/2019/04/01/javascript/instance/howToCheckDataTypeInjavascript/" rel="next" title="javascript中数据类型的几种判断方式">
+                <i class="fa fa-chevron-left"></i> javascript中数据类型的几种判断方式
               </a>
             
           </div>
@@ -577,8 +577,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/blog/2019/04/01/javascript/instance/howToCheckDataTypeInjavascript/" rel="prev" title="javascript中数据类型的几种判断方式">
-                javascript中数据类型的几种判断方式 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/04/02/css/css3-radial-gradient/" rel="prev" title="CSS radial-gradient() 函数">
+                CSS radial-gradient() 函数 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -657,7 +657,7 @@
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image"
-                src="/blog/uploads/avatar.gif"
+                src="/uploads/avatar.gif"
                 alt="elenh" />
             
               <p class="site-author-name" itemprop="name">elenh</p>
@@ -669,7 +669,7 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/blog/archives/">
+                <a href="/archives/">
               
                   <span class="site-state-item-count">56</span>
                   <span class="site-state-item-name">日志</span>
@@ -681,7 +681,7 @@
               
               
               <div class="site-state-item site-state-categories">
-                <a href="/blog/categories/index.html">
+                <a href="/categories/index.html">
                   <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
@@ -692,7 +692,7 @@
               
               
               <div class="site-state-item site-state-tags">
-                <a href="/blog/tags/index.html">
+                <a href="/tags/index.html">
                   <span class="site-state-item-count">89</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
@@ -858,74 +858,74 @@
 
   
   
-    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
   
 
   
   
-    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
   
 
   
   
-    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
   
 
   
   
-    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
   
 
   
   
-    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
   
 
   
   
-    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
   
 
   
   
-    <script type="text/javascript" src="/blog/lib/three/three.min.js"></script>
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
   
 
   
   
-    <script type="text/javascript" src="/blog/lib/three/canvas_lines.min.js"></script>
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
   
-
-
-  
-
-
-  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/blog/js/src/affix.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/blog/js/src/schemes/pisces.js?v=5.1.4"></script>
-
-
-
-  
-  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
-
 
 
   
 
 
-  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
 
 
 
@@ -986,7 +986,7 @@
     } else if (/json$/i.test(search_path)) {
       isXml = false;
     }
-    var path = "/blog/" + search_path;
+    var path = "/" + search_path;
     // monitor main search box;
 
     var onPopupClose = function (e) {
