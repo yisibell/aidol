@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-bounce.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-hwq.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="npm,node," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="本文介绍如何创建一个自己的 node 模块，以及怎样发布到 npm ，与其他开发人员共享你的模块。">
+<meta name="keywords" content="npm,node">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何发布一个自己的node模块到npm">
+<meta property="og:url" content="http://yoursite.com/2019/04/01/npm/howToPublishANodeModuleToNpm/index.html">
+<meta property="og:site_name" content="Hong WenQing&#39;s Blog">
+<meta property="og:description" content="本文介绍如何创建一个自己的 node 模块，以及怎样发布到 npm ，与其他开发人员共享你的模块。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-02-28T02:08:49.102Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何发布一个自己的node模块到npm">
+<meta name="twitter:description" content="本文介绍如何创建一个自己的 node 模块，以及怎样发布到 npm ，与其他开发人员共享你的模块。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/04/01/npm/howToPublishANodeModuleToNpm/"/>
+
+
+
+
+
+  <title>如何发布一个自己的node模块到npm | Hong WenQing's Blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?9c92e0ad8253116da5e16c497851dfa0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <a href="https://github.com/yisibell"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hong WenQing's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">keep fucking the world!</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/01/npm/howToPublishANodeModuleToNpm/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="elenh">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hong WenQing's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">如何发布一个自己的node模块到npm</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-01T00:00:00+08:00">
+                2019-04-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/npm相关/" itemprop="url" rel="index">
+                    <span itemprop="name">npm相关</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文介绍如何创建一个自己的 <code>node</code> 模块，以及怎样发布到 <code>npm</code> ，与其他开发人员共享你的模块。</p>
+<a id="more"></a>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>作为一个前端开发人员，或者 <code>nodejs</code> 开发人员，目前我们使用最多的模块管理机制实属是 <code>npm</code>。我们可以使用很简单方式引用其他开发者发布到 <code>npm</code> 的模块。例如，当需要在你的项目中使用 <code>vue</code>。那么你可以：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install vue --save</span><br></pre></td></tr></table></figure>
+<p>安装 <code>vue</code> 模块到你的项目中，然后通过简单的导入命令使用她：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Vue = <span class="built_in">require</span>(<span class="string">'vue'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 或者使用 es Module 语法</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>那么，我们自己怎样去创建一个自己模块，并且发布到 <code>npmjs</code> 呢？</p>
+<h1 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h1><p>在开始之前，你需要有 3 样关键的工具，请确保你已经安装或者注册了。</p>
+<ol>
+<li>编辑器，推荐使用 <a class="fc-danger" href="https://code.visualstudio.com/Download" target="_blank" rel="noopener">Visual Studio Code</a></li>
+<li><a class="fc-danger" href="https://nodejs.org/en/download/" target="_blank" rel="noopener">Node.js 环境</a></li>
+<li><a class="fc-danger" href="https://www.npmjs.com" target="_blank" rel="noopener">npm 账户</a></li>
+</ol>
+<h1 id="创建一个模块"><a href="#创建一个模块" class="headerlink" title="创建一个模块"></a>创建一个模块</h1><h2 id="npm-init"><a href="#npm-init" class="headerlink" title="npm init"></a>npm init</h2><p>首先，我们要初始化一个 <code>node</code> 项目，也就是你的 <code>node</code> 包。随便在电脑的哪个位置创建一个新的文件夹，名字嘛，假定我们叫她 <code>hello-npm-test</code>。什么！你说她俗气？没办法！因为 <code>苏大强</code> 喜欢，我 <code>苏明成</code> 表示也没有办法。</p>
+<p>OK！使用编辑器打开并进入到 <code>hello-npm-test</code> 文件夹，使用 <code>npm init</code> 初始化 <code>package.json</code>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm init</span><br></pre></td></tr></table></figure>
+<p>这时你会看到一些提示：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">elenh@elenh MINGW64 ~/Desktop/hello-npm-test</span><br><span class="line">$ npm init</span><br><span class="line">This utility will walk you through creating a package.json file.</span><br><span class="line">It only covers the most common items, and tries to guess sensible defaults.</span><br><span class="line"></span><br><span class="line">See `npm <span class="built_in">help</span> json` <span class="keyword">for</span> definitive documentation on these fields</span><br><span class="line">and exactly what they <span class="keyword">do</span>.</span><br><span class="line"></span><br><span class="line">Use `npm install &lt;pkg&gt;` afterwards to install a package and</span><br><span class="line">save it as a dependency <span class="keyword">in</span> the package.json file.</span><br><span class="line"></span><br><span class="line">Press ^C at any time to quit.</span><br><span class="line">package name: (hello-npm-test) hello-npm-test</span><br><span class="line">version: (1.0.0)</span><br><span class="line">description: a node <span class="built_in">test</span> module <span class="built_in">which</span> will be published to npm.</span><br><span class="line">entry point: (index.js)</span><br><span class="line"><span class="built_in">test</span> <span class="built_in">command</span>:</span><br><span class="line">git repository:</span><br><span class="line">keywords: npm node <span class="built_in">test</span></span><br><span class="line">author: elenh</span><br><span class="line">license: (ISC)</span><br><span class="line">About to write to C:\Users\yisiw\Desktop\hello-npm-test\package.json:</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"name"</span>: <span class="string">"hello-npm-test"</span>,</span><br><span class="line">  <span class="string">"version"</span>: <span class="string">"1.0.0"</span>,</span><br><span class="line">  <span class="string">"description"</span>: <span class="string">"a node test module which will be published to npm."</span>,</span><br><span class="line">  <span class="string">"main"</span>: <span class="string">"index.js"</span>,</span><br><span class="line">  <span class="string">"scripts"</span>: &#123;</span><br><span class="line">    <span class="string">"test"</span>: <span class="string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"keywords"</span>: [</span><br><span class="line">    <span class="string">"npm"</span>,</span><br><span class="line">    <span class="string">"node"</span>,</span><br><span class="line">    <span class="string">"test"</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="string">"author"</span>: <span class="string">"elenh"</span>,</span><br><span class="line">  <span class="string">"license"</span>: <span class="string">"ISC"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Is this ok? (yes) y</span><br></pre></td></tr></table></figure>
+<p>具体的意思就是确定 <code>package.json</code> 文件中的一些必要字段信息。比如，包的名字 <code>name</code> ，包的语义化版本号 <code>version</code> ，包的描述信息 <code>description</code>，包的入口点 （entry point）<code>main</code>，测试脚本命令 （test command）<code>script</code>，git 仓库地址 （git repository），在 <code>npm</code> 中的搜索关键字 <code>keywords</code> ，包的作者名 <code>author</code> 以及该包的开源许可证类别 <code>license</code>。</p>
+<blockquote>
+<p>注：如果直接按回车的话，表示直接使用默认值设置该字段，但是作为一个即将要把包发布到 <code>npm</code> 的模块分享者来说，请仔细填写这些信息。因为这关系到该模块是否能正常使用（main 入口点），或者说别的开发者能够方便检索到你的模块（keywords, description）。很关键的一点是，你的 <code>version</code> 字段一定要遵循 <code>npm</code> 的语义化版本定义规则。以便使用此模块的开发者知道使用该模块的哪个版本。关于 <code>语义化版本规则</code> 请参考本博客的另一篇文章 <a href="http://hongwenqing.com/2019/03/14/npm/npm/" class="fc-danger" target="_blank" rel="noopener">npm使用说明</a>。</p>
+</blockquote>
+<h2 id="编写模块"><a href="#编写模块" class="headerlink" title="编写模块"></a>编写模块</h2><p>现在，我们已经初始化好了 <code>package.json</code> 文件。是时候创建模块文件了。在 <code>hello-npm-test</code> 文件夹中新建一个名为 <code>index.js</code> 的文件。并在里面写入如下代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> (<span class="params"> str </span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log( <span class="string">'hello'</span> + str )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如上，使用 <code>CommonJs</code> 模块语法默认导出了一个函数，代码质量及其酷炫。<code>苏明玉</code> 都表示很惊讶！</p>
+<p>至于为什么使用名为 <code>index.js</code> 的文件呢？这边要说的话就需要展开 <code>nodejs</code> 的模块加载规则了，嗯，<code>苏明哲</code>让我别展开了，听大哥的话，所以请自行 <code>Google</code>。</p>
+<p>另一点需要说的是，在 <code>package.json</code> 文件中，我们定义了模块的入口点（entry point）<code>main</code> 字段，其默认值就是 <code>index.js</code>。她表示当使用模块导入语法使用该模块时，使用哪个文件作为入口点。当然，你可以修改她，比如：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"main"</span>: <span class="string">"src/index.js"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>表示模块入口点为 <code>src</code> 文件夹下的 <code>index.js</code> 文件。</p>
+<h1 id="测试你的模块"><a href="#测试你的模块" class="headerlink" title="测试你的模块"></a>测试你的模块</h1><p>到目前为止，你的模块已经可用了，那么怎么测试你的模块呢？此时，因为还没有发布到 <code>npm</code> ，所以不能使用如下方式直接安装。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hello-npm-test</span><br></pre></td></tr></table></figure>
+<p>重新创建一个项目文件夹用来测试我们新写的模块，名为 <code>my-project</code> 。进入到该文件夹，初始化 <code>node</code> 项目。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm init -y</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>此时，我们直接使用默认的 <code>package.json</code> 的设置即可，因为只是用来测试的。</p>
+</blockquote>
+<p>同样，我们新建一个 <code>index.js</code> 文件，并准备在该文件中使用 <code>hello-npm-test</code> 模块。</p>
+<p>两种方式来引用她：</p>
+<ul>
+<li>可以使用本地绝对路径引用的方式来使用她。</li>
+</ul>
+<p><code>cd</code> 进入到 <code>my-project</code> 文件夹中，并安装 <code>hello-npm-test</code>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install C:/Users/yisiw/Desktop/hello-npm-test</span><br></pre></td></tr></table></figure>
+<p>然后你可以看到 <code>my-project</code> 文件夹中的 <code>package.json</code> 文件中多出了 <code>dependencies</code> 字段如下：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"name"</span>: <span class="string">"my-project"</span>,</span><br><span class="line">  <span class="attr">"version"</span>: <span class="string">"1.0.0"</span>,</span><br><span class="line">  <span class="attr">"description"</span>: <span class="string">""</span>,</span><br><span class="line">  <span class="attr">"main"</span>: <span class="string">"index.js"</span>,</span><br><span class="line">  <span class="attr">"scripts"</span>: &#123;</span><br><span class="line">    <span class="attr">"test"</span>: <span class="string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"keywords"</span>: [],</span><br><span class="line">  <span class="attr">"author"</span>: <span class="string">""</span>,</span><br><span class="line">  <span class="attr">"license"</span>: <span class="string">"ISC"</span>,</span><br><span class="line">  <span class="attr">"dependencies"</span>: &#123;</span><br><span class="line">    <span class="attr">"hello-npm-test"</span>: <span class="string">"file:../hello-npm-test"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在 <code>index.js</code> 中使用她。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// my-project/index.js</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> log = <span class="built_in">require</span>(<span class="string">'hello-npm-test'</span>)</span><br><span class="line"></span><br><span class="line">log(<span class="string">'npm'</span>)</span><br></pre></td></tr></table></figure>
+<p>然后在终端执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ node index.js</span><br><span class="line">hellonpm</span><br></pre></td></tr></table></figure>
+<p>没错！成功的打印出了 <code>hellonpm</code>，鼓掌。</p>
+<ul>
+<li>你也可以使用 <code>npm link</code> 将 <code>hello-npm-test</code> 包关联到全局后通过 <code>npm link hello-npm-test</code> 来使用她。</li>
+</ul>
+<p>首先进入到 <code>hello-npm-test</code> 文件中，打开命令行，输入如下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm link</span><br></pre></td></tr></table></figure>
+<p>这句命令的意思是将本模块地址关联到 <code>nodejs</code> 的全局环境中，以便可以在本机的任何项目中使用她。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ E:\nodejs\node_modules\hello-npm-test -&gt; C:\Users\yisiw\Desktop\hello-npm-test</span><br></pre></td></tr></table></figure>
+<p>执行完 <code>npm link</code> 后，会出现上方的提示信息，表示 <code>hello-npm-test</code> 模块的副本已经安装关联到 <code>nodejs</code> 的全局环境中了，你可以打开如上方的路径地址找到<code>hello-npm-test</code> 模块文件夹，就在 <code>（E:\nodejs\node_modules\hello-npm-test）</code>。</p>
+<p>为了同第一种方式区分开，我们首先把之前的 <code>node_modules</code> 文件夹、<code>package-lock.json</code> 和 <code>package.json</code> 中的 <code>dependencies</code> 字段删除，然后进入到 <code>my-project</code> 文件夹中。输入如下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm link hello-npm-test</span><br><span class="line"></span><br><span class="line">elenh@elenh MINGW64 ~/Desktop/my-project</span><br><span class="line">$ npm link hello-npm-test</span><br><span class="line">C:\Users\yisiw\Desktop\my-project\node_modules\hello-npm-test -&gt; E:\nodejs\node_modules\hello-npm-test -&gt; C:\Users\yisiw\Desktop\hello-npm-test</span><br></pre></td></tr></table></figure>
+<p>执行完 <code>npm link hello-npm-test</code> 命令后，你会发现，<code>my-project</code> 文件夹中的 <code>node_mnodules</code> 右出现了，并且里面存在 <code>hello-npm-test</code> 包。那么我们再次执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ node index.js</span><br><span class="line">hellonpm</span><br></pre></td></tr></table></figure>
+<p>没错，同样是有用的。</p>
+<h1 id="将模块管理到-Github"><a href="#将模块管理到-Github" class="headerlink" title="将模块管理到 Github"></a>将模块管理到 Github</h1><p>接下来，我们应该将我们的包使用版本控制工具管理起来，方便之后的维护及更新。没错！是 <a href="https://github.com/yisibell/hello-npm-test" target="_blank" rel="noopener">Github</a>。理所当然！</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">$ git init</span><br><span class="line">$ git add .</span><br><span class="line">$ git commit -m <span class="string">'Initial commit'</span></span><br><span class="line">$ git remote add origin https://github.com/yisibell/hello-npm-test</span><br><span class="line">$ git push -u origin master</span><br></pre></td></tr></table></figure>
+<p>然后在 <code>package.json</code> 文件中加入 <code>homepage</code> 字段，并写上你的仓库地址。方便别人可以在 <code>Github</code> 中找到该项目。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"homepage"</span>: <span class="string">"https://github.com/yisibell/hello-npm-test"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="添加-README-md"><a href="#添加-README-md" class="headerlink" title="添加 README.md"></a>添加 README.md</h1><p>在开发完你的包功能后，你应该创建一个 <code>README.md</code> 文件来描述你的包。</p>
+<ul>
+<li>这个包怎么安装</li>
+<li>这个包是用来干什么的</li>
+<li>这个包解决了什么问题</li>
+<li>这个包有哪些配置项及APIS</li>
+</ul>
+<h1 id="添加-npmignore"><a href="#添加-npmignore" class="headerlink" title="添加.npmignore"></a>添加.npmignore</h1><p>在开发你的包的过程中，你可能会新建一些依赖文件，测试文件等，比如：package-lock.json、<br>node_modules、.gitignore、test、打包构建配置、以及 .npmignore 自身。这些都是不需要发布到 <code>npm</code> 上的。</p>
+<p>判别的基本原则就是，与该包不相关且其他人引入时，不需要加载的，我们都应该进行忽略。</p>
+<p><code>cd</code> 进入到 <code>hello-npm-test</code> ，打开你的终端命令行敲入 <code>touch .npmignore</code> 在项目包的根目录下新建 <code>.npmignore</code> 文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch .npmignore</span><br></pre></td></tr></table></figure>
+<p>然后在该文件中写入你要忽略的文件、文件夹配置。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">node_modules/</span><br><span class="line">.gitignore</span><br><span class="line"><span class="built_in">test</span>/</span><br><span class="line">package-lock.json</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：可别把 <code>package.json</code> 忽略掉了。这是必须上传的关键文件，该包的信息都被保存在该文件中，使用者使用导入语法导入该模块时，也是通过 <code>package.json</code> 文件中的  <code>main</code> 字段来查找入口文件。</p>
+</blockquote>
+<h1 id="发布到-npm"><a href="#发布到-npm" class="headerlink" title="发布到 npm"></a>发布到 npm</h1><p>最后一步就是发布你的模块到 <code>npm</code>。进入到 <code>hello-npm-test</code> ，打开命令行。敲入如下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm adduser</span><br></pre></td></tr></table></figure>
+<p>结果：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">elenh@elenh MINGW64 ~/Desktop/hello-npm-test (master)</span><br><span class="line">$ npm adduser</span><br><span class="line">Username: elenh</span><br><span class="line">Password:</span><br><span class="line">Email: (this IS public) yisiwings@163.com</span><br><span class="line">Logged <span class="keyword">in</span> as elenh on https://registry.npmjs.org/.</span><br></pre></td></tr></table></figure>
+<p>按提示输入 用户名（Username）、密码（Password）以及邮箱（Email）后，便会提示你已经作为谁谁谁登陆到了 <code>npm</code>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Logged <span class="keyword">in</span> as elenh on https://registry.npmjs.org/.</span><br></pre></td></tr></table></figure>
+<p>你可以使用 <code>npm version</code> 查看该模块当前所处的版本：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">$ npm version</span><br><span class="line">&#123; <span class="string">'hello-npm-test'</span>: <span class="string">'1.0.0'</span>,</span><br><span class="line">  npm: <span class="string">'5.6.0'</span>,</span><br><span class="line">  ares: <span class="string">'1.10.1-DEV'</span>,</span><br><span class="line">  cldr: <span class="string">'32.0'</span>,</span><br><span class="line">  http_parser: <span class="string">'2.8.0'</span>,</span><br><span class="line">  icu: <span class="string">'60.1'</span>,</span><br><span class="line">  modules: <span class="string">'57'</span>,</span><br><span class="line">  napi: <span class="string">'3'</span>,</span><br><span class="line">  nghttp2: <span class="string">'1.29.0'</span>,</span><br><span class="line">  node: <span class="string">'8.11.2'</span>,</span><br><span class="line">  openssl: <span class="string">'1.0.2o'</span>,</span><br><span class="line">  tz: <span class="string">'2017c'</span>,</span><br><span class="line">  unicode: <span class="string">'10.0'</span>,</span><br><span class="line">  uv: <span class="string">'1.19.1'</span>,</span><br><span class="line">  v8: <span class="string">'6.2.414.54'</span>,</span><br><span class="line">  zlib: <span class="string">'1.2.11'</span> &#125;</span><br></pre></td></tr></table></figure>
+<p>当前版本为 <code>1.0.0</code>。</p>
+<p>紧接着就是将包发布。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm publish</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在发布的过程中，你可能会遇到一些错误，比如 <code>npm</code> 中已经有存在你当前的这个包名了。那么修改你的包名再发布。</p>
+</blockquote>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p>现在，你可以使用诸如：<code>$ npm install hello-npm-test --save</code>，这样的方式来安装你自己的包了，并且在其他项目中使用她。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">const</span> log = <span class="built_in">require</span>(<span class="string">'hello-npm-test'</span>)</span><br><span class="line">log(<span class="string">'，明玉'</span>)</span><br></pre></td></tr></table></figure>
+<p>打印结果：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">$ node index.js</span><br><span class="line">hello，明玉</span><br></pre></td></tr></table></figure>
+<h1 id="维护和升级"><a href="#维护和升级" class="headerlink" title="维护和升级"></a>维护和升级</h1><p>你的包在不断使用的过程中，使用者们或你自己会发现，她存在某些 BUGS ，或者需要优化，再或者你需要添加新的功能 APIS。</p>
+<p>假定，你已经对包升级完毕，那么怎样更新 <code>npm</code> 上的包数据呢？这同样很简单，你只需要按照 <code>语义化版本规则</code> 更新你的版本号后，再修改下 <code>README.md</code> 说明文档，指出你的哪些改动，以及新的 API 用法。你就可以在该包根目录下打开命令行再次键入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm publish</span><br></pre></td></tr></table></figure>
+<p>你的包就会在 <code>npmjs</code> 被更新为一个新的版本。使用者们，不定期的执行 <code>npm outdated</code> 就会看到你的包的更新情况，并更新他们本地的包文件。</p>
+<h1 id="版本号更新方式"><a href="#版本号更新方式" class="headerlink" title="版本号更新方式"></a>版本号更新方式</h1><p>通常，当你的爱包中的代码被你优化修改了，你需要先升级你的包版本号，然后再 <code>npm publish</code>。你有以下两种更新版本号的方式。</p>
+<ol>
+<li>手动修改 <code>package.json</code> 中的 <code>version</code> 字段，注意遵循 <code>语义化版本规则</code>。然后再 <code>npm publish</code>。</li>
+<li>使用 <code>npm version &lt;update_type&gt;</code> 命令。</li>
+</ol>
+<p>其中 <code>update_type</code> 参数有 3 个常用可选值：<code>patch</code> , <code>minor</code> 和 <code>major</code>。</p>
+<ul>
+<li>patch 表示补丁级别的版本更新，即递增第三位版本号</li>
+<li>minor 表示小版本级别的版本更新，即递增第二位版本号</li>
+<li>major 表示大版本级别的版本更新，即递增第一位版本号</li>
+</ul>
+<blockquote>
+<p><code>&lt;update_type&gt;</code> 的其他值，不在此处列出，<code>| premajor | preminor | prepatch | prerelease [--preid=&lt;prerelease-id&gt;] | from-git</code>。</p>
+</blockquote>
+<p>例：当前 <code>hello-npm-test</code> 的版本号为 <code>1.0.1</code>，我们现在对小版本进行更新。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ npm version minor</span><br><span class="line">v1.1.0</span><br></pre></td></tr></table></figure>
+<p>如上打印结果，版本号已经升级到了第二位上，注意，因为是递增制，所以第三位版本号恢复从 0 开始。</p>
+<p>然后你就可以将新的版本发布到 <code>npm</code> 了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm publish</span><br></pre></td></tr></table></figure>
+<div class="note warning"><p>注意：在使用 <code>npm version &lt;update_type&gt;</code> 更新版本号之前，你需要先将你的代码提交到 github 否则会调用命令失败！</p></div>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/npm/" rel="tag"># npm</a>
+          
+            <a href="/tags/node/" rel="tag"># node</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/01/javascript/instance/howToCheckDataTypeInjavascript/" rel="next" title="javascript中数据类型的几种判断方式">
+                <i class="fa fa-chevron-left"></i> javascript中数据类型的几种判断方式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/02/javascript/instance/equalInJavascript/" rel="prev" title="javascript中的相等性判断">
+                javascript中的相等性判断 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zODc0MS8xNTI2OQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar.gif"
+                alt="elenh" />
+            
+              <p class="site-author-name" itemprop="name">elenh</p>
+              <p class="site-description motion-element" itemprop="description">Are you ok , Are you ok！</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">56</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">89</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/yisibell" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:yisiwings@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#准备"><span class="nav-number">2.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建一个模块"><span class="nav-number">3.</span> <span class="nav-text">创建一个模块</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#npm-init"><span class="nav-number">3.1.</span> <span class="nav-text">npm init</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编写模块"><span class="nav-number">3.2.</span> <span class="nav-text">编写模块</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#测试你的模块"><span class="nav-number">4.</span> <span class="nav-text">测试你的模块</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#将模块管理到-Github"><span class="nav-number">5.</span> <span class="nav-text">将模块管理到 Github</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#添加-README-md"><span class="nav-number">6.</span> <span class="nav-text">添加 README.md</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#添加-npmignore"><span class="nav-number">7.</span> <span class="nav-text">添加.npmignore</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#发布到-npm"><span class="nav-number">8.</span> <span class="nav-text">发布到 npm</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用"><span class="nav-number">9.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#维护和升级"><span class="nav-number">10.</span> <span class="nav-text">维护和升级</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#版本号更新方式"><span class="nav-number">11.</span> <span class="nav-text">版本号更新方式</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">elenh</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

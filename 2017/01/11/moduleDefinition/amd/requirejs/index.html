@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-bounce.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-hwq.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="模块化,AMD规范,requirejs," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="随着前端项目的不断增大，js 文件越来越多，大部分都是 js 的依赖模块，传统的引入方式已经无法满足当前开发需求，急需模块化的方案来替我们管理这些依赖。但，javascript 天生并不支持模块化，无法将多个模块文件分离出去，在使用时再将多个模块合并起来。事情总是需要解决，也总是不缺乏造轮子的人。于是，前端模块化的始祖，require.js 出现了，其基于 AMD 规范。使用 define 函数定">
+<meta name="keywords" content="模块化,AMD规范,requirejs">
+<meta property="og:type" content="article">
+<meta property="og:title" content="requirejs教程">
+<meta property="og:url" content="http://yoursite.com/2017/01/11/moduleDefinition/amd/requirejs/index.html">
+<meta property="og:site_name" content="Hong WenQing&#39;s Blog">
+<meta property="og:description" content="随着前端项目的不断增大，js 文件越来越多，大部分都是 js 的依赖模块，传统的引入方式已经无法满足当前开发需求，急需模块化的方案来替我们管理这些依赖。但，javascript 天生并不支持模块化，无法将多个模块文件分离出去，在使用时再将多个模块合并起来。事情总是需要解决，也总是不缺乏造轮子的人。于是，前端模块化的始祖，require.js 出现了，其基于 AMD 规范。使用 define 函数定">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-02-28T02:08:49.097Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="requirejs教程">
+<meta name="twitter:description" content="随着前端项目的不断增大，js 文件越来越多，大部分都是 js 的依赖模块，传统的引入方式已经无法满足当前开发需求，急需模块化的方案来替我们管理这些依赖。但，javascript 天生并不支持模块化，无法将多个模块文件分离出去，在使用时再将多个模块合并起来。事情总是需要解决，也总是不缺乏造轮子的人。于是，前端模块化的始祖，require.js 出现了，其基于 AMD 规范。使用 define 函数定">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/01/11/moduleDefinition/amd/requirejs/"/>
+
+
+
+
+
+  <title>requirejs教程 | Hong WenQing's Blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?9c92e0ad8253116da5e16c497851dfa0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <a href="https://github.com/yisibell"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hong WenQing's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">keep fucking the world!</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/11/moduleDefinition/amd/requirejs/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="elenh">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hong WenQing's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">requirejs教程</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-11T12:08:01+08:00">
+                2017-01-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/模块化相关/" itemprop="url" rel="index">
+                    <span itemprop="name">模块化相关</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>随着前端项目的不断增大，js 文件越来越多，大部分都是 js 的依赖模块，传统的引入方式已经无法满足当前开发需求，急需模块化的方案来替我们管理这些依赖。<br>但，javascript 天生并不支持模块化，无法将多个模块文件分离出去，在使用时再将多个模块合并起来。事情总是需要解决，也总是不缺乏造轮子的人。<br>于是，前端模块化的始祖，<code>require.js</code> 出现了，其基于 <code>AMD</code> 规范。使用 <code>define</code> 函数定义模块，利用 <code>require</code> 函数 导入模块。详细使用方式请继续往下看。</p>
+<a id="more"></a>
+<h1 id="获取方式"><a href="#获取方式" class="headerlink" title="获取方式"></a>获取方式</h1><ul>
+<li>官方地址: <a href="https://requirejs.org/" target="_blank" rel="noopener">https://requirejs.org/</a></li>
+<li>github: <a href="https://github.com/requirejs/requirejs" target="_blank" rel="noopener">https://github.com/requirejs/requirejs</a></li>
+</ul>
+<h1 id="为什么要使用-require-js"><a href="#为什么要使用-require-js" class="headerlink" title="为什么要使用 require.js?"></a>为什么要使用 <code>require.js</code>?</h1><p>最早的时候，所有 Javascript 代码都写在一个文件里面，只要加载这一个文件就够了。后来，代码越来越多，一个文件不够了，必须分成多个文件，依次加载。下面的网页代码，相信很多人都见过。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">　　&lt;script src=<span class="string">"1.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line">　　&lt;script src=<span class="string">"2.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line">　　&lt;script src=<span class="string">"3.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line">　　&lt;script src=<span class="string">"4.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line">　　&lt;script src=<span class="string">"5.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line">　　&lt;script src=<span class="string">"6.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>这段代码依次加载多个 <code>js</code> 文件。</p>
+<p>这样的写法有很大的缺点。首先，加载的时候，浏览器会停止网页渲染，加载文件越多，网页失去响应的时间就会越长；其次，由于 <code>js</code> 文件之间存在依赖关系，因此必须严格保证加载顺序（比如上例的<code>1.js</code> 要在 <code>2.js</code> 的前面），依赖性最大的模块一定要放到最后加载，当依赖关系很复杂的时候，代码的编写和维护都会变得困难。</p>
+<p><code>require.js</code> 的诞生，就是为了解决这两个问题：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">（1）实现js文件的异步加载，避免网页失去响应。</span><br><span class="line"></span><br><span class="line">（2）管理模块之间的依赖性，便于代码的编写和维护。</span><br></pre></td></tr></table></figure>
+<h1 id="模块加载规则"><a href="#模块加载规则" class="headerlink" title="模块加载规则"></a>模块加载规则</h1><p><code>RequireJS</code> 以一个相对于 <code>baseUrl</code> 的地址来加载所有的代码。 即 <code>baseUrl + paths</code> 的解析过程。</p>
+<p><strong>baseUrl的确定规则</strong></p>
+<ul>
+<li>以含有 <code>data-main</code> 属性的 <code>script</code> 的 <code>html</code> 页面所在文件目录为 <code>baseUrl</code>。</li>
+</ul>
+<p>页面顶层 <code>&lt;script&gt;</code> 标签含有一个特殊的属性 <code>data-main</code>，<code>require.js</code>使用它来启动脚本加载过程，而<code>baseUrl</code>一般设置到与该属性相一致的目录。</p>
+<ul>
+<li>以 <code>paths</code> 配置为准。(下面会介绍如何配置)</li>
+</ul>
+<div class="note warning"><p><strong>注：</strong><br><code>RequireJS</code> 默认假定所有的依赖资源都是 <code>js</code> 脚本，因此无需在 <code>module ID</code> 上再加 <code>.js</code> 后缀，<code>RequireJS</code> 在进行 <code>module ID</code> 到 <code>path</code> 的解析时会自动补上后缀。你可以通过 <code>paths config</code> 设置一组脚本，这些有助于我们在使用脚本时码更少的字。</p>
+<p>有时候你想避开 <code>baseUrl + paths</code> 的解析过程，而是直接指定加载某一个目录下的脚本。此时可以这样做：如果一个 <code>module ID</code> 符合下述规则之一，其ID解析会避开常规的 <code>baseUrl + paths</code> 配置，而是直接将其加载为一个相对于当前 <code>HTML</code> 文档的脚本：</p></div>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. 以 ".js" 结束.</span><br><span class="line">2. 以 "/" 开始.</span><br><span class="line">3. 包含 URL 协议, 如 "http:" or "https:".</span><br></pre></td></tr></table></figure>
+<p><strong>文件结构</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">|-www/</span><br><span class="line">|   |-libs</span><br><span class="line">|   |   |- require.js</span><br><span class="line">|   |   |- jquery.js</span><br><span class="line">|   |   |- layer.js</span><br><span class="line">|   |-utils</span><br><span class="line">|   |   |- dom.js</span><br><span class="line">|   |-pages</span><br><span class="line">|   |   |-login</span><br><span class="line">|   |   |   |- login.html</span><br><span class="line">|   |   |   |- login.js</span><br><span class="line">|   |-style</span><br></pre></td></tr></table></figure>
+<p><strong>login.html</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">data-main</span>=<span class="string">"./login.js"</span> <span class="attr">src</span>=<span class="string">"/libs/require.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>dom.js</strong><br>该模块导出了一个对象。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">define(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    name: <span class="string">"dom module"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p><strong>login.js</strong></p>
+<p>在 <code>login.js</code> 中，引用了 dom 模块，此时，<code>baseUrl</code> 为 <code>login.html</code> 所在的目录。所以，要想找到 <code>dom.js</code>，需要连跳两层文件夹，再进入 <code>utils</code>文件夹。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span>([<span class="string">'../../utils/dom'</span>] , <span class="function"><span class="keyword">function</span>(<span class="params"> dom </span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log( dom.name ) <span class="comment">// dom module</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>这里有个需要注意的地方，如果你引用了那些定义了 <code>模块名</code> 的文件，是无法保证主逻辑文件和依赖文件的加载顺序的，也就是说，你很有可能获取不到依赖文件导出的变量。例如 <code>jquery.js</code> ，其内部 定义模块时，加上了模块名参数 <code>jquery</code>。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">define(<span class="string">"jquery"</span> , <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>基于这种情况，<code>require.js</code> 会根据 <code>paths</code> 配置查找文件路径 (关于配置下面会介绍)。如果没有配置 <code>paths</code> 的话，<code>require.js</code> 只会简单的将该依赖文件通过含有 <code>async</code> 属性的 <code>&lt;script&gt;</code> 标签加载到 <code>&lt;head&gt;</code> 中，并不会处理文件之间的依赖关系。所以，当你引用一个含有模块名定义的依赖，又没有为其配置 <code>paths</code> 时，就会出现如下状况：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// login.js</span></span><br><span class="line"><span class="built_in">require</span>([<span class="string">'../../libs/jquery'</span>] , <span class="function"><span class="keyword">function</span>(<span class="params">$</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log( $ )  <span class="comment">// undefined</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>所以此时，我们需要对依赖进行配置 <code>paths</code>：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// login.js</span></span><br><span class="line"><span class="built_in">require</span>.config(&#123;</span><br><span class="line">  baseUrl: <span class="string">"/libs"</span>,</span><br><span class="line">  paths: &#123;</span><br><span class="line">    jquery: <span class="string">"jquery"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">require</span>([<span class="string">'jquery'</span>] , <span class="function"><span class="keyword">function</span>(<span class="params">$</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log( $ ); </span><br><span class="line">  <span class="comment">/*</span></span><br><span class="line"><span class="comment">    ƒ ( selector, context ) &#123;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">		// The jQuery object is actually just the init constructor 'enhanced'</span></span><br><span class="line"><span class="comment">		// Need init if jQuery is called (just allow error to be thrown if not included)</span></span><br><span class="line"><span class="comment">		return new jQuery…</span></span><br><span class="line"><span class="comment">  </span></span><br><span class="line"><span class="comment">  */</span> </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>现在，我们就可以拿到 <code>jquery</code> 导出的全局变量 <code>$</code> 了。</p>
+<h1 id="API介绍"><a href="#API介绍" class="headerlink" title="API介绍"></a>API介绍</h1><h2 id="data-main属性"><a href="#data-main属性" class="headerlink" title="data-main属性"></a>data-main属性</h2><p>指定页面主逻辑文件的的路径，它有点像 <code>c语言</code> 中 <code>main()</code>函数，所有的代码都从这开始运行。同时，它也默认确定了 <code>baseUrl</code> 的值为当前页面所在的目录。</p>
+<h2 id="require-config-配置方法"><a href="#require-config-配置方法" class="headerlink" title="require.config()配置方法"></a>require.config()配置方法</h2><p><strong>require.config.js文件：</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span>.config(&#123;</span><br><span class="line">  <span class="comment">//配置模块的基本路径</span></span><br><span class="line">  <span class="comment">//当在服务器模式下时，如果不使用 `/` 开头指定模块别名的路径的话，即当前的路径环境就是 根目录下的 assets 文件夹下</span></span><br><span class="line">  <span class="comment">//通常，多页面开发中，我们将第三方资源放在 assets 文件夹中</span></span><br><span class="line">  baseUrl: <span class="string">'/assets'</span>,</span><br><span class="line"></span><br><span class="line">  <span class="comment">//配置模块别名,也可以称作路径别名</span></span><br><span class="line">  <span class="comment">//当配置 baseUrl 属性的 时候 ， 此时就不需要加上 `/assets/` 了</span></span><br><span class="line">  <span class="comment">// requirejs 会自动帮你拼上，同时，其默认处理的就是 js 文件，所以文件的 .js 后缀也不需要加。</span></span><br><span class="line">  paths : &#123;</span><br><span class="line">    jquery : <span class="string">'jquery/jquery.min'</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//资源地址除了上面的 字符串格式，还可以是 数组格式，如：</span></span><br><span class="line">    <span class="comment">//其作用是：优先加载远程资源，当加载不成功时，则加载本地资源文件</span></span><br><span class="line">    bootstrap : [<span class="string">'https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js'</span> , <span class="string">'bootstrap/bootstrap.min'</span> ],</span><br><span class="line"></span><br><span class="line">    foo : <span class="string">'../js/foo'</span>   <span class="comment">// 配置一个自己定义的模块</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line"></span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  <span class="comment">//处理不支持AMD模块化的第三方依赖</span></span><br><span class="line">  <span class="comment">//比如 bootstrap ，其不支持 AMD 规范 ，即其没有使用 define 函数进行模块定义</span></span><br><span class="line">  <span class="comment">//随后进行 define 函数 的 使用说明</span></span><br><span class="line">  shim : &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//需要 shim (垫) 的模块 ， 上方已配置了 路径别名</span></span><br><span class="line">    bootstrap : &#123;</span><br><span class="line">      <span class="comment">//配置依赖项</span></span><br><span class="line">      deps : [<span class="string">'jquery'</span>],</span><br><span class="line">      <span class="comment">//配置导出变量名</span></span><br><span class="line">      exports : <span class="string">'bootstrap'</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//其他配置项</span></span><br><span class="line">  <span class="comment">// ... </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 至此，require.config.js 配置文件的配置就 基本完成了 ，当要引入其他模块时，继续配置即可。</span></span><br><span class="line"><span class="comment">// 支持AMD规范的 只需在 path 字段中 加个 配置 ， 不支持 AMD 规范的 再在 shim 字段中 垫 一下即可。</span></span><br></pre></td></tr></table></figure>
+<h2 id="define-函数"><a href="#define-函数" class="headerlink" title="define() 函数"></a>define() 函数</h2><p>AMD 规范要求 ，定义一个模块时 ，必须使用 <code>define()</code> 函数 来进行模块的 定义。</p>
+<p><strong>define 函数的参数说明</strong></p>
+<p>在定义一个模块时，其实 <code>define</code> 函数 接受 3个 参数。</p>
+<p>参数1 : String类型，定义该模块的名字(一般不会写这个参数，使用路径的方式引用模块更易控)<br>参数2 : Array类型，该模块依赖，使用配置好的路径别名 或 路径<br>参数3 : callback, 该模块的主逻辑体 ， <code>callback</code> 回调函数的 可接收 一些参数，这些参数就是 该模块的依赖项所导出的模块变量<br>值得注意的是，你需要按照 参数2 模块依赖 数组中参数的顺序来 配置 回调函数 的 形参顺序。</p>
+<p>@returns : 任意类型，指定定义模块导出的接口。</p>
+<p><strong>例：</strong></p>
+<blockquote>
+<p>定义了一个 foo 模块，该模块依赖于 jquery<br>输出打印了一些信息<br>导出了一个对象</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">define([<span class="string">'jquery'</span>] , <span class="function"><span class="keyword">function</span>(<span class="params">$</span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">console</span>.log($)</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'这是foo模块'</span>)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> &#123; <span class="attr">name</span>: <span class="string">"foo"</span>&#125;  <span class="comment">// 导出接口</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="require-函数"><a href="#require-函数" class="headerlink" title="require() 函数"></a>require() 函数</h2><p>有定义，就有引用，AMD规范中，使用 <code>require()</code> 函数 来引用模块。</p>
+<p><strong>require 函数的参数说明</strong></p>
+<p>参数1 : Array类型，模块依赖<br>参数2 : callback , 主体逻辑</p>
+<p><strong>例：</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span>([<span class="string">'jquery'</span> , <span class="string">'foo'</span>] , <span class="function"><span class="keyword">function</span>(<span class="params"> $ </span>)</span>&#123;</span><br><span class="line">  <span class="comment">// your main logic code ...</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h1 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h1><p>在多页面应用中，每个页面都会对应一个主逻辑文件，那如果，我们每次都在 <code>*.js</code> 文件头部写配置信息的话，那就太蠢了。效率低下而不优雅。</p>
+<p>所以，在项目根目录下，创建一个 <code>require.config.js</code> 文件，将配置信息写在这个文件中。当然，文件名你可以随便定义，最好能够区分她是谁的配置文件。</p>
+<p><strong>对于多页应用来说，通常我们会有如下项目结构：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">|-www/</span><br><span class="line">|   |-assets</span><br><span class="line">|   |   |- requirejs</span><br><span class="line">|   |       |- require.js</span><br><span class="line">|   |   |- jquery</span><br><span class="line">|   |       |- jquery.js</span><br><span class="line">|   |   |-  ...</span><br><span class="line">|   |-pages</span><br><span class="line">|   |   |- login</span><br><span class="line">|   |       |- login.html</span><br><span class="line">|   |       |- login.js</span><br><span class="line">|   |   |- demo</span><br><span class="line">|   |       |- demo.html</span><br><span class="line">|   |       |- demo.js</span><br><span class="line">|   |-utils</span><br><span class="line">|   |   |- dom.js</span><br><span class="line">|   |-style</span><br><span class="line">|   |-require.config.js</span><br><span class="line">|   |-README.md</span><br><span class="line"></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>那么我们会这样使用模块化。</p>
+<p><strong>demo.html</strong><br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>demo<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span> this is demo page <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"/assets/requirejs/require.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span> <span class="comment">&lt;!-- 引入require.js --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"/require.config.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span> <span class="comment">&lt;!-- 引入requirejs的配置文件 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">  <span class="built_in">require</span>([<span class="string">'../pages/demo/demo'</span>])  <span class="comment">//页面的主入口文件</span></span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span> </span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>require.config.js</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span>.config(&#123;</span><br><span class="line">  baseUrl: <span class="string">"/assets"</span>,</span><br><span class="line">  paths: &#123;</span><br><span class="line">    jquery: <span class="string">"jquery/jquery"</span>,</span><br><span class="line">    dom: <span class="string">"../utils/dom"</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p><strong>demo.js</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span>([<span class="string">'jquery'</span> , <span class="string">'dom'</span>] , <span class="function"><span class="keyword">function</span>(<span class="params">$ , dom</span>)</span>&#123;</span><br><span class="line">  <span class="comment">//该 主程序文件 依赖于 2个 模块 ， 分别是 jquery, dom</span></span><br><span class="line">  <span class="comment">//其中 dom 为 自己定义的 模块</span></span><br><span class="line">  <span class="comment">// some code here...</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>也许你会想，哇！这不还是加载了 3 个 <code>script</code> 标签引用吗？ <br></p>
+<p><code>-- ||</code> 当你有 100 个 js 文件依赖时，你就不会这么想了！不信你可以试试。祝你好运！</p>
+<h1 id="兼容性"><a href="#兼容性" class="headerlink" title="兼容性"></a>兼容性</h1><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">IE 6+ .......... 兼容 ✔</span><br><span class="line">Firefox 2+ ..... 兼容 ✔</span><br><span class="line">Safari 3.2+ .... 兼容 ✔</span><br><span class="line">Chrome 3+ ...... 兼容 ✔</span><br><span class="line">Opera 10+ ...... 兼容 ✔</span><br></pre></td></tr></table></figure>
+<h1 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h1><p>这篇文章仅记录 <code>require.js</code> 的简单使用，可以帮助你快速入门，一般项目开发足够了，需要更多有关 <code>require.js</code> 的信息，可以翻阅 <a class="fc-primary" href="https://requirejs.org/" target="_blank" rel="noopener"> requirejs 官网 </a>。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/模块化/" rel="tag"># 模块化</a>
+          
+            <a href="/tags/AMD规范/" rel="tag"># AMD规范</a>
+          
+            <a href="/tags/requirejs/" rel="tag"># requirejs</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/06/jquery/docs/jquery-queue/" rel="next" title="jquery队列操作案例">
+                <i class="fa fa-chevron-left"></i> jquery队列操作案例
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/26/moduleDefinition/cmd/seajs/" rel="prev" title="seajs教程">
+                seajs教程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zODc0MS8xNTI2OQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar.gif"
+                alt="elenh" />
+            
+              <p class="site-author-name" itemprop="name">elenh</p>
+              <p class="site-description motion-element" itemprop="description">Are you ok , Are you ok！</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">56</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">89</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/yisibell" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:yisiwings@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#获取方式"><span class="nav-number">1.</span> <span class="nav-text">获取方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么要使用-require-js"><span class="nav-number">2.</span> <span class="nav-text">为什么要使用 require.js?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#模块加载规则"><span class="nav-number">3.</span> <span class="nav-text">模块加载规则</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#API介绍"><span class="nav-number">4.</span> <span class="nav-text">API介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#data-main属性"><span class="nav-number">4.1.</span> <span class="nav-text">data-main属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#require-config-配置方法"><span class="nav-number">4.2.</span> <span class="nav-text">require.config()配置方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#define-函数"><span class="nav-number">4.3.</span> <span class="nav-text">define() 函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#require-函数"><span class="nav-number">4.4.</span> <span class="nav-text">require() 函数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#最佳实践"><span class="nav-number">5.</span> <span class="nav-text">最佳实践</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#兼容性"><span class="nav-number">6.</span> <span class="nav-text">兼容性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结束语"><span class="nav-number">7.</span> <span class="nav-text">结束语</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">elenh</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
