@@ -1,4 +1,5 @@
 module.exports = {
+  base: '/idou/',
   title: 'idou',
   description: 'A theme for VuePress',
   themeConfig: {
