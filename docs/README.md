@@ -1,3 +1,13 @@
+---
+home: true
+title: idou介绍
+date: 2020-03-17
+tags: 
+ - VuePress
+ - vue
+ - theme
+---
+
 # idou
 
 A theme for vuePress!
