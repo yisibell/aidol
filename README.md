@@ -1,2 +1,3 @@
-# Hong Wen Qing 's Blog
- Yep!
+# idou
+
+a theme for vuePress.
