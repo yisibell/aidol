@@ -1,6 +1,6 @@
 # idou
 
-A theme for vuePress.
+A theme for vuePress!
 
 # 构建
 

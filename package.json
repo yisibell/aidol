@@ -1,0 +1,24 @@
+{
+  "name": "idou",
+  "version": "1.0.0",
+  "description": "a theme for vuePress.",
+  "scripts": {
+    "dev": "vuepress dev docs",
+    "build": "vuepress build docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@gitee.com:elenhong/idou.git"
+  },
+  "keywords": [
+    "idou",
+    "vuepress",
+    "theme",
+    "vue"
+  ],
+  "author": "elenh",
+  "license": "ISC",
+  "devDependencies": {
+    "vuepress": "^1.3.1"
+  }
+}
