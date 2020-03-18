@@ -6,7 +6,7 @@
         <span>发布于：</span><span class="f-12 fc-info mr-15">{{v.date}}</span>
         <span>分类于：</span><span class="f-12 fc-info">{{v.categories.join('，')}}</span>
       </div>
-      <div>
+      <div class="mt-10">
         <el-tag v-for="(v,i) in v.tags" :key="i" size="mini" class="mr-8 mb-4 mt-4">{{ v }}</el-tag>
       </div>
     </div>
@@ -27,10 +27,13 @@
 </template>
 
 <script>
+import paging from '@theme/utils/paging'
+
 export default {
   name: 'HomeBody',
   data() {
     return {
+      origin_posts: [],
       posts: [],
       total: 100,
       form: {
@@ -40,9 +43,13 @@ export default {
     }
   },
   mounted() {
-    this.posts = this.createPostList()
+    this.init()
   },
   methods: {
+    init() {
+      this.origin_posts = this.createPostList()
+      this.handleCurrentChange(1)
+    },
     createPostList() {
       const { $site } = this
       const { pages } = $site
@@ -65,6 +72,9 @@ export default {
     },
     handleCurrentChange(index) {
       this.form.page = index
+      const { data, total } = paging(this.origin_posts, {currentPage: index, pageSize: 10})
+      this.posts = data
+      this.total = total
     }
   }
 }
@@ -75,7 +85,6 @@ export default {
   max-width: 1200px;
   margin: 0 auto;
   padding: 15px;
-  height: 500px;
 
   .post-item {
     margin-bottom: 15px;
