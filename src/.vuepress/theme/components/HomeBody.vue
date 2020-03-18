@@ -35,7 +35,7 @@ export default {
     return {
       origin_posts: [],
       posts: [],
-      total: 100,
+      total: 0,
       form: {
         page: 1,
         pageSize: 10
@@ -72,7 +72,7 @@ export default {
     },
     handleCurrentChange(index) {
       this.form.page = index
-      const { data, total } = paging(this.origin_posts, {currentPage: index, pageSize: 10})
+      const { data, total } = paging(this.origin_posts, {currentPage: index, pageSize: this.form.pageSize})
       this.posts = data
       this.total = total
     }
