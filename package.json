@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "a theme for vuePress.",
   "scripts": {
-    "dev": "vuepress dev docs",
-    "build": "vuepress build docs"
+    "dev": "vuepress dev src",
+    "build": "vuepress build src"
   },
   "repository": {
     "type": "git",
