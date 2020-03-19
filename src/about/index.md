@@ -2,6 +2,5 @@
 title: About
 layout: About
 sidebar: false
+custom: true
 ---
-
-this is about page, In the building...

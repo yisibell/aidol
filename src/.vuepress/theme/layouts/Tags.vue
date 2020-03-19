@@ -1,16 +1,17 @@
 <template>
-   <parent-layout>
-    <Content />
-  </parent-layout>
+  <div class="tags">this is all tags, in the building...</div>
 </template>
 
 <script>
-import ParentLayout from '@parent-theme/layouts/Layout.vue'
-
 export default {
-  name: 'Tags',
-  components: {
-    ParentLayout
-  }
+  name: 'Tags'
 }
 </script>
+
+<style lang="scss" scoped>
+.tags {
+  padding: 15px;
+  height: 500px;
+  text-align: center;
+}
+</style>

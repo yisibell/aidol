@@ -2,6 +2,5 @@
 title: All Categories
 layout: Categories
 sidebar: false
+custom: true
 ---
-
-this is all categories, In the building...

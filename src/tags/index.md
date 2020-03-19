@@ -2,6 +2,5 @@
 title: All Tags
 layout: Tags
 sidebar: false
+custom: true
 ---
-
-this is all tags, In the building...

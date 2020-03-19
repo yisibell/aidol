@@ -1,3 +1,18 @@
-main.page {
-  padding-bottom: 0px;
+body {
+  background-color: #E9ECEF;
 }
+
+#global-layout {
+  main.page {
+    padding-bottom: 0px;
+    padding-top: 60px;
+    
+    .theme-default-content {
+      background-color: #fff;
+      max-width: 960px;
+      box-sizing: border-box;
+      margin-top: 15px;
+    }
+  }
+}
+

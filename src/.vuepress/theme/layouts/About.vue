@@ -1,16 +1,17 @@
 <template>
-  <parent-layout>
-    <Content />
-  </parent-layout>
+  <div class="about">this is about page, in the building...</div>
 </template>
 
 <script>
-import ParentLayout from '@parent-theme/layouts/Layout.vue'
-
 export default {
-  name: 'About',
-  components: {
-    ParentLayout
-  }
+  name: 'About'
 }
 </script>
+
+<style lang="scss" scoped>
+.about {
+  padding: 15px;
+  height: 500px;
+  text-align: center;
+}
+</style>

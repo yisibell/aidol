@@ -14,6 +14,6 @@ module.exports = {
       { text: '作者博客', link: 'http://www.hongwenqing.com' },
     ],
     displayAllHeaders: true,
-    sidebar: 'auto'
+    sidebar: false
   }
 }

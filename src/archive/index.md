@@ -2,6 +2,5 @@
 title: 归档
 layout: Archive
 sidebar: false
+custom: true
 ---
-
-this is archive page, In the building...
