@@ -14,6 +14,13 @@ module.exports = {
       { text: '作者博客', link: 'http://www.hongwenqing.com' },
     ],
     displayAllHeaders: true,
-    sidebar: false
-  }
+    activeHeaderLinks: true,
+    sidebar: false,
+    smoothScroll: true,
+    lastUpdated: '最后更新于', // string | boolean
+  },
+  plugins: [
+    [require('./plugins/post-menu.js')],
+    '@vuepress/back-to-top'
+  ]
 }

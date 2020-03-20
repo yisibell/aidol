@@ -5,7 +5,6 @@
     <div class="item"><i class="el-icon el-icon-message"></i></div>
     <div class="item"><i class="el-icon el-icon-chat-dot-round"></i></div>
     <div class="item"><i class="el-icon el-icon-share"></i></div>
-    <div class="item"><i class="el-icon el-icon-arrow-up"></i></div>
   </div>
 </template>
 
