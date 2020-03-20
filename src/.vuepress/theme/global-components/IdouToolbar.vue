@@ -1,5 +1,5 @@
 <template>
-  <div class="idou-toolbar">
+  <div class="idou-toolbar" :style="{marginTop: marginTop + 'px'}">
     <div class="item"><i class="el-icon el-icon-user-solid"></i></div>
     <div class="item"><i class="el-icon el-icon-phone"></i></div>
     <div class="item"><i class="el-icon el-icon-message"></i></div>
@@ -9,11 +9,27 @@
 </template>
 
 <script>
+import affix from '@theme/utils/affix'
+
 export default {
   name: 'IdouToolbar',
+  props: {
+    topOffset: {
+      type: Number,
+      default: 64
+    }
+  },
   data() {
-    return {}
-  }
+    return {
+      marginTop: this.topOffset
+    }
+  },
+  mounted() {
+    affix(this.topOffset, (top) => {
+      this.marginTop = top
+    })
+  },
+  methods: {}
 }
 </script>
 
@@ -22,6 +38,7 @@ $--size: 40px;
 
 .idou-toolbar {
   width: $--size;
+ 
   .item {
     display: flex;
     justify-content: center;

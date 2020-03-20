@@ -1,15 +1,17 @@
 <template>
   <div id="global-layout">
     <div class="global-layout__page">
-      <parent-layout>
-        <template #page-top v-if="showPageTop">
-          <div class="global-layout__page-top">
-            <component :is="layout" :key="layout" />
-          </div>
-        </template>
-        <template #page-bottom></template>
-      </parent-layout>
       <idou-toolbar class="global-layout__page__tool-bar" />
+
+      <div class="global-layout__page__content">
+        <parent-layout>
+          <template #page-top v-if="showPageTop">
+            <component :is="layout" :key="layout" />
+          </template>
+          <template #page-bottom></template>
+        </parent-layout>
+      </div>
+
       <idou-sidebar class="global-layout__page__side-bar" />
     </div>
     <idou-footer />
@@ -23,6 +25,9 @@ export default {
   name: 'GlobalLayout',
   components: {
     ParentLayout
+  },
+  data() {
+    return {}
   },
   computed: {
     frontmatter() {
@@ -50,30 +55,29 @@ export default {
   background-color: #E9ECEF;
   
   .global-layout__page {
-    min-height: 94vh;
-    max-width: 960px;
-    margin: 0 auto;
     position: relative;
-
-    &__side-bar {
-      position: absolute;
-      top: 75px;
-      right: -17.5rem;
-    }
+    min-height: 94vh;
+    max-width: 1344px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    padding-top: 80px;
+    padding-bottom: 15px;
 
     &__tool-bar {
-      position: absolute;
-      top: 134px;
-      left: -4.2rem;
+      z-index: 1024;
     }
 
-    &-top {
-      max-width: 960px;
-      margin: 15px auto;
-      box-sizing: border-box;
+    &__content {
       background-color: #fff;
+      width: 960px;
+      margin: 0 15px;
     }
-  }
 
+    &__side-bar {
+      z-index: 1024;
+    }
+  
+  }
 }
 </style>
