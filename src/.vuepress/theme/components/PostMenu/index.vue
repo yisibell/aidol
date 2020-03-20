@@ -54,8 +54,7 @@ export default {
     handleClose() {},
     // 生成标题树
     generateHeadTree() {
-      const { $page } = this
-      console.log( $page )
+      // const { $page } = this
       // const post_content = document.querySelector('.theme-default-content')
       // console.log(post_content)
     }

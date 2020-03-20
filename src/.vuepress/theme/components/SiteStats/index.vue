@@ -5,16 +5,16 @@
       <p>hello, idou!</p>
     </div>
     <div class="site-stats-content flex-center">
-      <div class="site-stats-content__item">
-        <div class="site-stats-content__item__count">66</div>
+      <div class="site-stats-content__item" @click="goHome">
+        <div class="site-stats-content__item__count">{{ post_count }}</div>
         <div class="site-stats-content__item__label">日志</div>
       </div>
-      <div class="site-stats-content__item">
-        <div class="site-stats-content__item__count">40</div>
+      <div class="site-stats-content__item" @click="goCategories">
+        <div class="site-stats-content__item__count">{{ category_count }}</div>
         <div class="site-stats-content__item__label">分类</div>
       </div>
-      <div class="site-stats-content__item">
-        <div class="site-stats-content__item__count">188</div>
+      <div class="site-stats-content__item" @click="goTags">
+        <div class="site-stats-content__item__count">{{ tag_count }}</div>
         <div class="site-stats-content__item__label">标签</div>
       </div>
     </div>
@@ -22,8 +22,36 @@
 </template>
 
 <script>
+import posts_mixin from '@theme/mixin/posts'
+
 export default {
-  name: 'SiteStats'
+  name: 'SiteStats',
+  mixins: [posts_mixin],
+  data() {
+    return {}
+  },
+  computed: {
+    post_count() {
+      return this.origin_posts.length
+    },
+    tag_count() {
+      return this.origin_tags.length
+    },
+    category_count() {
+      return this.origin_categories.length
+    }
+  },
+  methods: {
+    goHome() {
+      this.$router.push({ path: '/' })
+    },
+    goTags() {
+      this.$router.push({ path: '/tags' })
+    },
+    goCategories() {
+      this.$router.push({ path: '/categories'})
+    }
+  }
 }
 </script>
 
