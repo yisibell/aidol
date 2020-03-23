@@ -14,16 +14,16 @@ import affix from '@theme/utils/affix'
 
 export default {
   name: 'IdouSidebar',
+  components: {
+    SiteStats,
+    PostMenu,
+    AdsBoard
+  },
   props: {
     topOffset: {
       type: Number,
       default: 0
     }
-  },
-  components: {
-    SiteStats,
-    PostMenu,
-    AdsBoard
   },
   data() {
     return {

@@ -1,3 +1,4 @@
+import { counter } from '@theme/utils'
 export default {
   computed: {
     // 全站文章数据
@@ -21,17 +22,21 @@ export default {
     },
     // 全站所有标签
     origin_tags() {
-      return this.origin_posts.reduce((arr, v) => {
+      const all_tag = this.origin_posts.reduce((arr, v) => {
         arr = arr.concat(v.tags)
-        return [...new Set(arr)]
+        return arr
       }, [])
+     
+      return counter(all_tag)
     },
     // 全站所有分类
     origin_categories() {
-      return this.origin_posts.reduce((arr, v) => {
+      const all_category = this.origin_posts.reduce((arr, v) => {
         arr = arr.concat(v.categories)
-        return [...new Set(arr)]
+        return arr
       }, [])
+
+      return counter(all_category)
     }
   }
 }
