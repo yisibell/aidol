@@ -1,9 +1,10 @@
 <template>
  <div class="tags">
-    <div class="tags-title">All Tags（{{ origin_tags.length }}）</div>
-    <div class="flex-center">
+    <div class="tags-title mb-15">All Tags</div>
+    <div class="text-center f-14">目前共计 {{origin_tags.length}} 个标签</div>
+    <div class="flex-center mt-50">
       <el-badge v-for="(v, i) in origin_tags" :key="i" :value="v.count" :type="tagType(v.count)" class="mr-40 mt-10 mb-10 cursor-pointer">
-        <el-tag size="small" :type="tagType(v.count)">{{ v.name }}</el-tag>
+        <el-tag size="small" :type="tagType(v.count)" @click="goPostList(v)">{{ v.name }}</el-tag>
       </el-badge>
     </div>
  </div>
@@ -27,6 +28,9 @@ export default {
       if (currCount <= min) return 'info'
       else if (currCount > min && currCount < max) return 'primary'
       else return 'success'
+    },
+    goPostList() {
+      
     }
   }
 }
@@ -38,7 +42,7 @@ export default {
   min-height: 500px;
   &-title {
     text-align: center;
-    font-size: 20px;
+    font-size: 24px;
     margin-bottom: 30px;
   }
 }

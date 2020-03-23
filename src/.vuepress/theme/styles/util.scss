@@ -163,7 +163,7 @@ $total: 55;
 }
 
 // 字体大小
-$total-font: 20;
+$total-font: 50;
 @while $total-font>=8 {
   .f-#{$total-font} {
     font-size: #{$total-font}px !important;
