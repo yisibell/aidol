@@ -56,7 +56,7 @@ export default {
   
   .global-layout__page {
     position: relative;
-    min-height: 80vh;
+    min-height: 84.5vh;
     max-width: 1344px;
     margin: 0 auto;
     display: flex;

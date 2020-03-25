@@ -1,8 +1,8 @@
 <template>
   <div class="idou-sidebar" :style="{marginTop: marginTop + 'px'}">
-    <site-stats class="mb-15" />
-    <ads-board class="mb-15" />
-    <post-menu />
+    <site-stats v-show="!onlyShowPostMenu" class="mb-15" />
+    <ads-board v-show="!onlyShowPostMenu" class="mb-15" />
+    <post-menu v-if="showPostMenu" />
   </div>
 </template>
 
@@ -27,15 +27,32 @@ export default {
   },
   data() {
     return {
-      marginTop: this.topOffset
+      marginTop: this.topOffset,
+      onlyShowPostMenu: false // 是否仅显示文章导航
+    }
+  },
+  computed: {
+    showPostMenu() {
+      const { frontmatter } = this.$page
+      return !frontmatter.custom
     }
   },
   mounted() {
     affix(this.topOffset, top => {
       this.marginTop = top
     })
+    this.init()
   },
-  methods: {}
+  methods: {
+    init() {
+      window.addEventListener('scroll', () => {
+        const offset_y = window.pageYOffset
+        const win_h = window.innerHeight
+       
+        this.onlyShowPostMenu = offset_y > win_h / 2
+      })
+    }
+  }
 }
 </script>
 
