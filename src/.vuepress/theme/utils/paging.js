@@ -31,48 +31,40 @@ export default (
     total = origin.length
   } else {
     // filter data
-    let filterArr = origin.filter( ori => {
+    const filteredArr = origin.filter(ori => {
 
-      let valids = {};
+      const validMap = condition.reduce((o, v) => {
+        o[v.key] = true
+        return o
+      }, {})
 
-      condition.forEach( v => {
-        let o = {}
-        valids[v.key] = true
-      })
+      for (let k in validMap) {
+        if (validMap.hasOwnProperty(k)) {
+          const curr = condition.find(v => v.key === k )  // 某条件信息对象
+          
+          /* 匹配方式 S */
+          if (curr.daterange) {  // 1.日期范围
+            const start = +new Date( curr.value ? curr.value[0] : 0 )
+            const end = +new Date( curr.value ? curr.value[1] : 0 )
+            const now = +new Date( ori[k] )
 
-      for ( let k in valids ){
-
-        if ( valids.hasOwnProperty(k) ){
-
-          let curr = condition.find( v => v.key === k )  // 某条件信息对象
-
-          if ( curr.daterange ){  // 日期范围
-
-            let start = +new Date( curr.value ? curr.value[0] : 0 ),
-                end = +new Date( curr.value ? curr.value[1] : 0 ),
-                now = +new Date( ori[k] );
-
-            valids[k] = (start <= now && end >= now) || !start
-
-          }else{  // 模糊、全匹配
-
-            valids[k] = (curr.fuzzy ? ori[k].search( curr.value ) !== -1 : ori[k] == curr.value) || curr.value == ''
-
+            validMap[k] = (start <= now && end >= now) || !start
+          } else if (curr.validHandler) { // 2.自定义校验
+            validMap[k] = curr.validHandler(curr.value, ori[k])
+          } else {  // 3.模糊、全匹配
+            validMap[k] = (curr.fuzzy ? ori[k].search( curr.value ) !== -1 : ori[k] == curr.value) || curr.value == ''
           }
-
+          /* 匹配方式 E */
         }
-
       }
 
-      
-      for ( let k in valids ) if( !valids[k] ) return false
+      for ( let k in validMap ) if( !validMap[k] ) return false
 
       return true
-
     })
 
     // pagination data from condition filter
-    data = currentPage && pageSize ? filterArr.slice( start_index , end_index ) : filterArr
+    data = currentPage && pageSize ? filteredArr.slice( start_index , end_index ) : filteredArr
     // pagination total data
     total = data.length  
   }
