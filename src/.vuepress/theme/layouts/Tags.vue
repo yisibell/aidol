@@ -2,13 +2,13 @@
  <div class="tags">
     <div class="tags-title mb-15">All Tags</div>
     <div class="text-center f-14">目前共计 {{origin_tags.length}} 个标签</div>
-    <div class="flex-center mt-50">
+    <div class="flex-center mt-20">
       <el-tag 
         v-for="(v, i) in origin_tags" 
         :key="i"
         class="mr-10 mt-5 mb-5 cursor-pointer" 
-        size="small" 
-        :type="tagType(v.count)" 
+        :size="tagPriority(v.count).size"
+        :type="tagPriority(v.count).type" 
         @click="goPostList(v)"
       >
         {{ v.name }}
@@ -29,15 +29,16 @@ export default {
     }
   },
   methods: {
-    tagType(currCount) {
+    // 标签优先级
+    tagPriority(currCount) {
       const max = Math.max(...this.tagCountArr)
       const min = Math.min(...this.tagCountArr)
-      if (currCount <= min) return 'info'
-      else if (currCount > min && currCount < max) return 'primary'
-      else return 'success'
+      if (currCount <= min) return {size: 'mini', type: 'info'}
+      else if (currCount > min && currCount < max) return {size: 'small', type: 'primary'}
+      else return {size: 'large', type: 'success'}
     },
-    goPostList() {
-      
+    goPostList({ name }) {
+      this.$router.push({path: '/', query: {tag: name}})
     }
   }
 }
