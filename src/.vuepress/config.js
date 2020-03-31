@@ -9,5 +9,8 @@ module.exports = {
   plugins: [
     [require('./plugins/post-menu.js')],
     '@vuepress/back-to-top'
-  ]
+  ],
+  markdown: {
+    extractHeaders: ['h1', 'h2', 'h3', 'h4', 'h6']
+  }
 }

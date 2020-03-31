@@ -1,37 +1,77 @@
 <template>
-    <el-card>
-      this is post menu.
-    </el-card>
+  <el-card class="post-menu">
+    <div class="f-13 mb-15 flex-center">文章目录</div>
+    <el-tree :data="postMenu" :props="defaultProps" node-key="id">
+      <template v-slot="{ data }"><a :href="`#${data.slug}`" class="post-menu__title">{{data.title}}</a></template>
+    </el-tree>
+  </el-card>
 </template>
 
 <script>
-import { resolveSidebarItems } from '@parent-theme/util'
-
 export default {
   name: 'PostMenu',
-  computed: {
-    sidebarItems () {
-      return resolveSidebarItems(
-        this.$page,
-        this.$page.regularPath,
-        this.$site,
-        this.$localePath
-      )
-    },
+  data() {
+    return {
+      postMenu: [],
+      defaultProps: {
+        children: 'children',
+        label: 'title'
+      }
+    }
   },
   mounted() {
-    this.generateHeadTree()
-    console.log(this.sidebarItems)
+    this.init()
   },
   methods: {
-    handleOpen() {},
-    handleClose() {},
+    init() {
+      const { headers } = this.$page
+      this.postMenu = this.generateHeadersTree(headers)
+    },
     // 生成标题树
-    generateHeadTree() {
-      // const { $page } = this
-      // const post_content = document.querySelector('.theme-default-content')
-      // console.log(post_content)
+    generateHeadersTree(headers = [], res = []) {
+      return headers.reduce((init, v, i) => {
+        const { level } = v // 当前遍历对象
+        const len = init.length // 已生成数据长度
+        v.id = i
+
+        if (len === 0) {
+          init.push(v)
+        } else {
+          this.recursionChild(init, v)
+        }
+
+        return init
+      }, res)
+
+    },
+    // 递归生成子集标题树
+    recursionChild(init, v) {
+      const { level } = v // 当前遍历对象
+      const len = init.length // 已生成数据长度
+      const last_h = init[len-1] // 最后一条
+
+      if (level === last_h.level) {
+        init.push(v)
+      } else if (level > last_h.level) {
+        const child = last_h.children
+        if (child && child.length > 0) {
+          // 递归
+          this.recursionChild(child, v)
+        } else {
+          last_h.children = [v]
+        }
+      }
     }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.post-menu {
+  max-height: 68vh;
+  overflow-y: auto;
+  &__title {
+    color: rgb(105, 102, 102);
+  }
+}
+</style>
