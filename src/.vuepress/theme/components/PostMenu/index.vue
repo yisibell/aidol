@@ -2,12 +2,18 @@
   <el-card class="post-menu">
     <div class="f-13 mb-15 flex-center">文章目录</div>
     <el-tree :data="postMenu" :props="defaultProps" node-key="id">
-      <template v-slot="{ data }"><a :href="`#${data.slug}`" class="post-menu__title">{{data.title}}</a></template>
+      <template v-slot="{ data }">
+        <a :href="`#${data.slug}`" class="post-menu__title">
+          <span class="text_overflow_1">{{data.title}}</span>
+        </a>
+      </template>
     </el-tree>
   </el-card>
 </template>
 
 <script>
+import { cloneDeep } from 'lodash'
+
 export default {
   name: 'PostMenu',
   data() {
@@ -25,7 +31,7 @@ export default {
   methods: {
     init() {
       const { headers } = this.$page
-      this.postMenu = this.generateHeadersTree(headers)
+      this.postMenu = this.generateHeadersTree(cloneDeep(headers))
     },
     // 生成标题树
     generateHeadersTree(headers = [], res = []) {
@@ -72,6 +78,7 @@ export default {
   overflow-y: auto;
   &__title {
     color: rgb(105, 102, 102);
+    font-size: 13px;
   }
 }
 </style>
