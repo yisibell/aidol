@@ -45,8 +45,29 @@ export default {
       }
     }
   },
+  computed: {
+    qs() {
+      return this.$route.query
+    },
+    condition() {
+      const { tag, category } = this.qs
+      if (tag) {
+        return [{key: 'tags', value: tag, validHandler: this.validHandler}]
+      } else if(category) {
+        return [{key: 'categories', value: category, validHandler: this.validHandler}]
+      } 
+      return null
+    }
+  },
   mounted() {
     this.init()
+  },
+  watch: {
+    'qs': {
+      handler() {
+        this.init()
+      }
+    }
   },
   methods: {
     init() {
@@ -57,9 +78,12 @@ export default {
     },
     handleCurrentChange(index) {
       this.form.page = index
-      const { data, total } = paging(this.origin_posts, {currentPage: index, pageSize: this.form.pageSize})
+      const { data, total } = paging(this.origin_posts, {currentPage: index, pageSize: this.form.pageSize}, this.condition)
       this.posts = data
       this.total = total
+    },
+    validHandler(con_val, ori_val) {
+      return ori_val.includes(con_val)
     }
   }
 }

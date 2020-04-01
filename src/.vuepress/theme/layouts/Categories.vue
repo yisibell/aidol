@@ -23,7 +23,9 @@ export default {
   name: 'Categories',
   mixins: [posts_mixin],
   methods: {
-    goPostList() {}
+    goPostList({ name }) {
+      this.$router.push({ path: '/', query: {category: name}})
+    }
   }
 }
 </script>
