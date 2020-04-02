@@ -1,5 +1,6 @@
 <template>
   <el-tooltip v-bind="$props">
+    <template #content><slot name="content" /></template>
     <template #default>
       <slot name="default">
         <svg-icon v-if="iconClass" :icon-class="iconClass" />

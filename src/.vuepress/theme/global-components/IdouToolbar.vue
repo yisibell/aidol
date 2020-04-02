@@ -43,7 +43,9 @@
       <tooltip-icon content="评论" icon-class="comment" />
     </div>
     <div class="item">
-      <tooltip-icon content="分享" icon-class="share" />
+      <tooltip-icon icon-class="share">
+        <template #content><b-share /></template>
+      </tooltip-icon>
     </div>
   </div>
 </template>

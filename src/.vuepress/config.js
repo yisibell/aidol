@@ -12,7 +12,6 @@ module.exports = {
   description: 'A theme for VuePress',
   themeConfig,
   plugins: [
-    [require('./plugins/post-menu.js')],
     '@vuepress/back-to-top'
   ],
   markdown: {

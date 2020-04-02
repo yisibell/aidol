@@ -24,5 +24,11 @@ module.exports = {
     jianshu: '',
     zhihu: '',
     weibo: ''
+  },
+  service: {
+    // BShare 分享服务
+    BShare: {
+      uuid: '3a6c60f8-51de-461b-a72f-055603a121fc'
+    }
   }
 }

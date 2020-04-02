@@ -1,7 +1,7 @@
 {
   "name": "idou",
   "version": "1.0.0",
-  "description": "a theme for vuePress and not only theme.",
+  "description": "a theme for vuePress but not only theme.",
   "scripts": {
     "dev": "vuepress dev src",
     "build": "vuepress build src"
