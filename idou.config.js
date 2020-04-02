@@ -14,4 +14,15 @@ module.exports = {
   sidebar: false,
   smoothScroll: true,
   lastUpdated: '最后更新于', // string | boolean
+  author: {
+    name: 'elenh',
+    github: 'https://github.com/yisibell',
+    gitee: 'https://gitee.com/elenhong',
+    email: 'yisiwings@163.com',
+    wechat: 'yisi2194516801',
+    qq: '123456789',
+    jianshu: '',
+    zhihu: '',
+    weibo: ''
+  }
 }

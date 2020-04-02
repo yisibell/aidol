@@ -1,8 +1,8 @@
 <template>
   <div class="idou-toolbar" :style="{marginTop: marginTop + 'px'}">
-    <div class="item"><i class="el-icon el-icon-user-solid"></i></div>
-    <div class="item"><i class="el-icon el-icon-phone"></i></div>
-    <div class="item"><i class="el-icon el-icon-message"></i></div>
+    <div class="item" @click="goAbout"><i class="el-icon el-icon-user-solid"></i></div>
+    <div class="item"><a :href="github" target="_blank" title="github"><svg-icon icon-class="github" /></a></div>
+    <div class="item"><a :href="`mailto:${email}`" target="_blank" title="E-mail"><i class="el-icon el-icon-message"></i></a></div>
     <div class="item"><i class="el-icon el-icon-chat-dot-round"></i></div>
     <div class="item"><i class="el-icon el-icon-share"></i></div>
   </div>
@@ -24,12 +24,30 @@ export default {
       marginTop: this.topOffset
     }
   },
+  computed: {
+    themeConfig() {
+      return this.$site.themeConfig
+    },
+    author() {
+      return this.themeConfig.author
+    },
+    github() {
+      return this.author.github
+    },
+    email() {
+      return this.author.email
+    }
+  },
   mounted() {
     affix(this.topOffset, (top) => {
       this.marginTop = top
     })
   },
-  methods: {}
+  methods: {
+    goAbout() {
+      this.$router.push({ path: '/about' })
+    }
+  }
 }
 </script>
 
