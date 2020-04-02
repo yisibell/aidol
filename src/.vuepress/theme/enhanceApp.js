@@ -2,6 +2,7 @@ import ElementUI from './plugins/element-ui/2.13.0/lib/index.js'
 import './plugins/element-ui/2.13.0/lib/theme-chalk/index.css'
 import './styles/main.scss'
 import Icons from './icons'
+import CustomUI from './components'
 
 export default ({
   Vue, // VuePress 正在使用的 Vue 构造函数
@@ -13,4 +14,6 @@ export default ({
   Vue.use(ElementUI)
   // svg图标
   Vue.use(Icons)
+  // 自定义UI
+  Vue.use(CustomUI)
 }

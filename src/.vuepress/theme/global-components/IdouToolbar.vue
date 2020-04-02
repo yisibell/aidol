@@ -1,10 +1,50 @@
 <template>
   <div class="idou-toolbar" :style="{marginTop: marginTop + 'px'}">
-    <div class="item" @click="goAbout"><i class="el-icon el-icon-user-solid"></i></div>
-    <div class="item"><a :href="github" target="_blank" title="github"><svg-icon icon-class="github" /></a></div>
-    <div class="item"><a :href="`mailto:${email}`" target="_blank" title="E-mail"><i class="el-icon el-icon-message"></i></a></div>
-    <div class="item"><i class="el-icon el-icon-chat-dot-round"></i></div>
-    <div class="item"><i class="el-icon el-icon-share"></i></div>
+    <div class="item" @click="goAbout">
+      <tooltip-icon content="关于" el-icon="el-icon-user-solid" />
+    </div>
+    <div v-if="github" class="item">
+      <a :href="github" target="_blank">
+        <tooltip-icon content="github" icon-class="github" />
+      </a>
+    </div>
+    <div v-if="gitee" class="item">
+      <a :href="gitee" target="_blank">
+        <tooltip-icon content="码云" icon-class="code" />
+      </a>
+    </div>
+    <div v-if="jianshu" class="item">
+      <a :href="jianshu" target="_blank">
+        <tooltip-icon content="简书" icon-class="jianshu" />
+      </a>
+    </div>
+    <div v-if="zhihu" class="item">
+      <a :href="zhihu" target="_blank">
+        <tooltip-icon content="知乎" icon-class="zhihu" />
+      </a>
+    </div>
+    <div v-if="email" class="item">
+      <a :href="`mailto:${email}`" target="_blank">
+        <tooltip-icon content="邮箱" el-icon="el-icon-message" />
+      </a>
+    </div>
+    <div v-if="wechat" class="item">
+      <tooltip-icon :content="`微信：${wechat}`" icon-class="wechat" />
+    </div>
+    <div v-if="qq" class="item">
+      <tooltip-icon :content="`QQ：${qq}`" icon-class="qq" />
+    </div>
+    <div v-if="weibo" class="item">
+      <a :href="weibo" target="_blank">
+        <tooltip-icon content="微博" icon-class="weibo" />
+      </a>
+    </div>
+    <div class="item">
+      <tooltip-icon content="评论" icon-class="comment" />
+    </div>
+    <div class="item">
+      <tooltip-icon content="分享" icon-class="share" />
+    </div>
   </div>
 </template>
 
@@ -34,8 +74,26 @@ export default {
     github() {
       return this.author.github
     },
+    gitee() {
+      return this.author.gitee
+    },
     email() {
       return this.author.email
+    },
+    wechat() {
+      return this.author.wechat
+    },
+    qq() {
+      return this.author.qq
+    },
+    jianshu() {
+      return this.author.jianshu
+    },
+    zhihu() {
+      return this.author.zhihu
+    },
+    weibo() {
+      return this.author.weibo
     }
   },
   mounted() {
