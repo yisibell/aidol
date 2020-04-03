@@ -32,7 +32,7 @@
 </template>
 
 <script>
-// import busuanzi from '@theme/service/busuanzi'
+import busuanzi from '@theme/service/busuanzi'
 
 export default {
   name: 'IdouFooter',
@@ -61,7 +61,7 @@ export default {
   },
   methods: {
     init() {
-      // busuanzi.install()
+      busuanzi.install()
     }
   }
 }
