@@ -46,9 +46,11 @@ export default {
       j.async = true
       
       if (e) {
+        console.log('pe', e)
         e.parentNode.insertBefore(j, e)
       } else {
-        d.body.insertBefore(j, d.body.firstChild)
+        console.log('ph')
+        d.head.appendChild(j)
       }
       
     }
