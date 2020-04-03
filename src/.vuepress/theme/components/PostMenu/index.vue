@@ -8,6 +8,15 @@
         </a>
       </template>
     </el-tree>
+    <div class="post-menu__footer">
+      <div v-if="busuanzi.open" class="flex-center">
+        <div id="busuanzi_container_page_pv" style="display:none">
+          <span>{{ busuanzi.page_pv_header }}</span>
+          <span id="busuanzi_value_page_pv" class="mr-6 ml-6"></span>
+          <span>{{ busuanzi.page_pv_footer }}</span>
+        </div>
+      </div>
+    </div>
   </el-card>
 </template>
 
@@ -23,6 +32,14 @@ export default {
         children: 'children',
         label: 'title'
       }
+    }
+  },
+  computed: {
+    themeConfig() {
+      return this.$site.themeConfig
+    },
+    busuanzi() {
+      return this.themeConfig.service.busuanzi
     }
   },
   mounted() {
@@ -79,6 +96,12 @@ export default {
   &__title {
     color: rgb(105, 102, 102);
     font-size: 13px;
+  }
+
+  &__footer {
+    box-sizing: border-box;
+    margin-top: 10px;
+    font-size: 12px;
   }
 }
 </style>
