@@ -40,10 +40,10 @@
       </a>
     </div>
     <div class="item">
-      <tooltip-icon content="评论" icon-class="comment" @click.native="goComment" />
+      <tooltip-icon content="去评论" icon-class="comment" @click.native="goComment" />
     </div>
     <div class="item">
-      <tooltip-icon icon-class="share">
+      <tooltip-icon icon-class="share" @click.native="goShare">
         <template #content><b-share /></template>
       </tooltip-icon>
     </div>
@@ -110,6 +110,9 @@ export default {
     },
     goComment() {
       toHash('lv-container')
+    },
+    goShare() {
+      window.open('http://www.bshare.cn/share')
     }
   }
 }

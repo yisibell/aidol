@@ -77,7 +77,7 @@ export default {
     }
 
     &__side-bar {
-      z-index: 1024;
+      z-index: 1;
     }
   
   }

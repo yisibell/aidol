@@ -1,15 +1,15 @@
 const themeConfig = require('../../idou.config.js')
 const path = require('path')
-
+const siteInfo = themeConfig.siteInfo
 function resolve(dir) {
   return path.join(__dirname, dir)
 }
 
 module.exports = {
   base: '/idou/',
-  title: 'idou',
+  title: siteInfo.title,
   dest: './dist',
-  description: 'A theme for VuePress',
+  description: siteInfo.description,
   themeConfig,
   plugins: [
     '@vuepress/back-to-top'

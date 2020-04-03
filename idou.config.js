@@ -16,6 +16,7 @@ module.exports = {
   lastUpdated: '最后更新于', // string | boolean
   author: {
     name: 'elenh',
+    description: 'hello, idou!',
     github: 'https://github.com/yisibell',
     gitee: 'https://gitee.com/elenhong',
     email: 'yisiwings@163.com',
@@ -24,6 +25,11 @@ module.exports = {
     jianshu: '',
     zhihu: '',
     weibo: ''
+  },
+  siteInfo: {
+    title: 'idou',
+    description: 'A theme for VuePress but not only theme',
+    since: '2019'
   },
   service: {
     // BShare 分享服务

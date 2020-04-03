@@ -5,7 +5,7 @@
 -->
 <template>
   <div>
-    <a class="bshareDiv fc-white" href="http://www.bshare.cn/share" target="_blank">去分享</a>
+    <span>去分享</span>
     <script 
       type="text/javascript" 
       charset="utf-8" 

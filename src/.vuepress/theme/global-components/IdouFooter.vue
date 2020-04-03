@@ -1,10 +1,12 @@
 <template>
   <div class="idou-footer">
     <div class="idou-footer__content flex-center">
-        <i class="el-icon-success mr-8"></i>
-        <span class="mr-20">2019 / {{ sinceEnd }}</span>
-        <i class="el-icon-user-solid mr-8"></i>
-        <span>idou</span>
+      
+      <svg-icon icon-class="copyright" class="mr-8" />
+      <span class="mr-20">{{ siteInfo.since }} / {{ sinceEnd }}</span>
+      <i class="el-icon-user-solid mr-8"></i>
+      <span>{{ author.name }}</span>
+       
     </div>
   </div>
 </template>
@@ -18,6 +20,15 @@ export default {
   computed: {
     sinceEnd() {
       return new Date().getFullYear()
+    },
+    themeConfig() {
+      return this.$site.themeConfig
+    },
+    author() {
+      return this.themeConfig.author
+    },
+    siteInfo() {
+      return this.themeConfig.siteInfo
     }
   }
 }
@@ -27,8 +38,8 @@ export default {
 .idou-footer {
   width: 100%;
   height: 50px;
-  background-color: #222222;
-  color: #aaa;
+  background-color: #fff;
+  color: #2c2c2c;
   &__content {
     font-size: 14px;
     max-width: 1200px;
