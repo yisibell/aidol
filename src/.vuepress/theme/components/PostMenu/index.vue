@@ -9,7 +9,7 @@
       </template>
     </el-tree>
     <div class="post-menu__footer">
-      <div v-show="busuanzi.open" class="flex-center">
+      <div v-if="busuanzi.open" class="flex-center">
         <div id="busuanzi_container_page_pv">
           <span>{{ busuanzi.page_pv_header }}</span>
           <span id="busuanzi_value_page_pv" class="mr-6 ml-6"></span>

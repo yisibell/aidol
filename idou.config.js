@@ -44,7 +44,7 @@ module.exports = {
     },
     // 不蒜子 访问统计服务
     busuanzi: {
-      open: true,
+      open: false,
       site_uv_header: '本站访客数',
       site_uv_footer: '人次',
       site_pv_header: '本站总访问量',
