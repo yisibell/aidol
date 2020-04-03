@@ -40,7 +40,7 @@
       </a>
     </div>
     <div class="item">
-      <tooltip-icon content="评论" icon-class="comment" />
+      <tooltip-icon content="评论" icon-class="comment" @click.native="goComment" />
     </div>
     <div class="item">
       <tooltip-icon icon-class="share">
@@ -52,6 +52,7 @@
 
 <script>
 import affix from '@theme/utils/affix'
+import { toHash } from '@theme/utils'
 
 export default {
   name: 'IdouToolbar',
@@ -106,6 +107,9 @@ export default {
   methods: {
     goAbout() {
       this.$router.push({ path: '/about' })
+    },
+    goComment() {
+      toHash('live-re-container')
     }
   }
 }

@@ -8,7 +8,9 @@
           <template #page-top v-if="showPageTop">
             <component :is="layout" :key="layout" />
           </template>
-          <template #page-bottom></template>
+          <template #page-bottom>
+            <live-re />
+          </template>
         </parent-layout>
       </div>
 

@@ -11,7 +11,6 @@ export const createLink = (href = '', type = 'link', target = 'head') => {
   el_target.appendChild(link)
 }
 
-
 export function counter(arr) {
   return arr.reduce((init, name) => {
     const index = init.findIndex(v => v.name === name)
@@ -24,4 +23,13 @@ export function counter(arr) {
 
     return init
   }, [])
+}
+
+export function toHash(id) {
+  const a = document.createElement('a')
+  a.href = `#${id}`
+  a.click()
+  setTimeout(() => {
+    a.remove()
+  }, 300)
 }
