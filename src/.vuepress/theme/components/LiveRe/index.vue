@@ -4,7 +4,7 @@
 @desc: 来必力 评论服务
 -->
 <template>
-  <div id="live-re-container">
+  <div class="live-re-container">
     <!-- 来必力City版安装代码 -->
     <div id="lv-container" :data-id="type" :data-uid="uid">
     <script type="text/javascript">
@@ -50,7 +50,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#live-re-container {
+.live-re-container {
   padding: 20px;
 }
 </style>

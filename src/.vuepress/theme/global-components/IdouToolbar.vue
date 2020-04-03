@@ -109,7 +109,7 @@ export default {
       this.$router.push({ path: '/about' })
     },
     goComment() {
-      toHash('live-re-container')
+      toHash('lv-container')
     }
   }
 }
