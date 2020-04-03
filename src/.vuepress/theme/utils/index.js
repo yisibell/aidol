@@ -27,7 +27,10 @@ export function counter(arr) {
 
 export function toHash(id) {
   const a = document.createElement('a')
+  const body = document.querySelector('body')
+
   a.href = `#${id}`
+  body.append(a)
   a.click()
   setTimeout(() => {
     a.remove()
