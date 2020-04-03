@@ -112,7 +112,15 @@ export default {
       toHash('lv-container')
     },
     goShare() {
-      window.open('http://www.bshare.cn/share')
+      const a = document.createElement('a')
+      a.href = 'http://www.bshare.cn/share'
+      document.body.appendChild(a)
+      a.target = "_blank"
+      a.click()
+
+      setTimeout(() => {
+        a.remove()
+      }, 300)
     }
   }
 }
