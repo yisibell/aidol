@@ -32,7 +32,7 @@ export default {
     }
   },
   mounted() {
-    this.loadedInit()
+    // this.loadedInit()
   },
   methods: {
     init(s = 'script') {
