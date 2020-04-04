@@ -37,20 +37,23 @@ export default {
   methods: {
     init(s = 'script') {
       try {
-        const d = document
-        let j, e = d.getElementsByTagName(s)[0];
+        this.$nextTick(() => {
+          const d = document
+          let j, e = d.getElementsByTagName(s)[0];
 
-        if (typeof LivereTower === 'function') return
+          if (typeof LivereTower === 'function') return
 
-        j = d.createElement(s)
-        j.src = 'https://cdn-city.livere.com/js/embed.dist.js'
-        j.async = true
-        
-        if (e) {
-          e.parentNode.insertBefore(j, e)
-        } else {
-          d.head.appendChild(j)
-        }
+          j = d.createElement(s)
+          j.src = 'https://cdn-city.livere.com/js/embed.dist.js'
+          j.async = true
+          
+          if (e) {
+            e.parentNode.insertBefore(j, e)
+          } else {
+            d.head.appendChild(j)
+          }
+        })
+       
       } catch(err) {
         console.error(err)
       }
