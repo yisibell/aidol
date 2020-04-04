@@ -33,10 +33,6 @@ module.exports = {
     showMadeBy: true
   },
   service: {
-    // BShare 分享服务
-    BShare: {
-      uuid: '3a6c60f8-51de-461b-a72f-055603a121fc'
-    },
     // 来必力 评论服务
     LiveRe: {
       type: 'city',

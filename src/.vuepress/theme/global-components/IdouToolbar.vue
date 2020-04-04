@@ -42,11 +42,6 @@
     <div class="item">
       <tooltip-icon content="去评论" icon-class="comment" @click.native="goComment" />
     </div>
-    <div class="item">
-      <tooltip-icon icon-class="share" @click.native="goShare">
-        <template #content><b-share /></template>
-      </tooltip-icon>
-    </div>
   </div>
 </template>
 
@@ -110,17 +105,6 @@ export default {
     },
     goComment() {
       toHash('lv-container')
-    },
-    goShare() {
-      const a = document.createElement('a')
-      a.href = 'http://www.bshare.cn/share'
-      document.body.appendChild(a)
-      a.target = "_blank"
-      a.click()
-
-      setTimeout(() => {
-        a.remove()
-      }, 300)
     }
   }
 }

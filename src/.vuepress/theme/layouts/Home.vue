@@ -1,7 +1,7 @@
 <template>
   <div class="idou-home">
     <div class="post-item" v-for="(v) in posts" :key="v.key">
-      <div class="fc-success cursor-pointer f-20">{{ v.title }}</div>
+      <div class="fc-success f-20">{{ v.title }}</div>
       <div class="mt-5">
         <el-tag v-for="(e,i) in v.tags" :key="i" size="mini" class="mr-8 mb-4 mt-4">{{ e }}</el-tag>
         <span class="f-12 fc-info mr-15">发布于：{{v.date}}</span>
