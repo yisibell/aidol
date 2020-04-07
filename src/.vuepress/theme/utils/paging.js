@@ -66,7 +66,7 @@ export default (
     // pagination data from condition filter
     data = currentPage && pageSize ? filteredArr.slice( start_index , end_index ) : filteredArr
     // pagination total data
-    total = data.length  
+    total = filteredArr.length  
   }
     
   return {

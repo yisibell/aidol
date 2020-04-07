@@ -91,7 +91,7 @@ export default {
 
 <style lang="scss" scoped>
 .idou-home {
-  padding: 15px 15px 15px 30px;
+  padding: 15px 30px 15px 30px;
   .post-item {
     margin-bottom: 15px;
     border-bottom: 1px solid #ccc;
