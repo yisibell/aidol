@@ -5,7 +5,7 @@
 
       <div class="global-layout__page__content">
         <parent-layout>
-          <template #page-top v-if="showPageTop">
+          <template #page-top>
             <component :is="layout" :key="layout" />
           </template>
           <template #page-bottom>
@@ -44,9 +44,6 @@ export default {
         return 'Layout'
       }
       return 'NotFound'
-    },
-    showPageTop() {
-      return this.frontmatter.custom
     }
   }
 }

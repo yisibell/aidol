@@ -36,3 +36,8 @@ export function toHash(id) {
     a.remove()
   }, 300)
 }
+
+export function joinToStr(arr, type = ' ') {
+  arr = arr || []
+  return arr.join(type)
+}
