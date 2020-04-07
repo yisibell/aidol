@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[13],{431:function(n,e,t){"use strict";t.r(e);var s={name:"Idou404"},u=t(0),i=Object(u.a)(s,(function(){var n=this.$createElement;return(this._self._c||n)("div",[this._v("404")])}),[],!1,null,null,null);e.default=i.exports}}]);

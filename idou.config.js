@@ -30,7 +30,8 @@ module.exports = {
     title: 'idou',
     description: 'A theme for VuePress but not only theme',
     since: '2019',
-    showMadeBy: true
+    showMadeBy: true,
+    postDirName: '_posts'
   },
   service: {
     // 来必力 评论服务

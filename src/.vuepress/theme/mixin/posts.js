@@ -6,9 +6,10 @@ export default {
     // 全站文章数据
     origin_posts() {
       const { $site } = this
-      const { pages } = $site
+      const { pages, themeConfig } = $site
+      const { postDirName } = themeConfig.siteInfo
 
-      return pages.filter(v => v.path.indexOf('/_posts') >= 0).map(v => {
+      return pages.filter(v => v.path.indexOf(`/${postDirName}`) >= 0).map(v => {
         const { path, key, excerpt } = v
         const { title, date, tags, categories } = v.frontmatter
         const date_ms = +new Date(date)

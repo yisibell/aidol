@@ -2,15 +2,13 @@
   <div class="layout">
     <h2 class="layout-title">{{ page.title }}</h2>
     <div class="flex-center layout-body">
-      <div class="flex-inline">
-        <svg-icon icon-class="date" class="mr-10" />
-        <span class="mr-8">发表于</span>
-        <span>{{ date }}</span>
-        <span class="ml-15 mr-15"> | </span>
-        <svg-icon icon-class="category" class="mr-10" />
-        <span class="mr-8">分类于</span>
-        <span class="cursor-pointer category">{{ categories }}</span>
-      </div>
+      <svg-icon icon-class="date" class="mr-6 f-14" />
+      <span class="mr-8">发表于</span>
+      <span>{{ date }}</span>
+      <span class="ml-10 mr-10 pb-2"> | </span>
+      <svg-icon icon-class="category" class="mr-6 f-14" />
+      <span class="mr-8">分类于</span>
+      <span class="cursor-pointer category">{{ categories }}</span>
     </div>
   </div>
 </template>
