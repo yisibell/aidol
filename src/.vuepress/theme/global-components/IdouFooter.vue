@@ -2,11 +2,11 @@
   <div class="idou-footer">
     <div class="flex-center mb-15">
       <div class="mr-10">
-        <svg-icon icon-class="copyright" />
         <template v-if="siteInfo.showMadeBy">
-          <span>Made by </span><a class="mr-8" href="https://elenhong.gitee.io/idou/" target="_blank">idou</a>
+          <span>Designed & Powerd by </span><a class="mr-8" href="https://elenhong.gitee.io/idou/" target="_blank">idou</a>
         </template>
-        <span>{{ siteInfo.since }} / {{ sinceEnd }}</span>
+        <svg-icon icon-class="copyright" />
+        <span>{{ siteInfo.since }} - {{ sinceEnd }}</span>
       </div>
     
       <div>
