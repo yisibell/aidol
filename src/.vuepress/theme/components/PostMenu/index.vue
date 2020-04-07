@@ -1,5 +1,5 @@
 <template>
-  <el-card class="post-menu">
+  <el-card class="post-menu scrollbar-mini">
     <div class="f-13 mb-15 flex-center">文章目录</div>
     <el-tree :data="postMenu" :props="defaultProps" node-key="id">
       <template v-slot="{ data }">
@@ -9,13 +9,7 @@
       </template>
     </el-tree>
     <div class="post-menu__footer">
-      <div v-if="busuanzi.open" class="flex-center">
-        <div id="busuanzi_container_page_pv" style="display: none;">
-          <span>{{ busuanzi.page_pv_header }}</span>
-          <span id="busuanzi_value_page_pv" class="mr-6 ml-6"></span>
-          <span>{{ busuanzi.page_pv_footer }}</span>
-        </div>
-      </div>
+     
     </div>
   </el-card>
 </template>
@@ -32,14 +26,6 @@ export default {
         children: 'children',
         label: 'title'
       }
-    }
-  },
-  computed: {
-    themeConfig() {
-      return this.$site.themeConfig
-    },
-    busuanzi() {
-      return this.themeConfig.service.busuanzi
     }
   },
   mounted() {
@@ -91,7 +77,7 @@ export default {
 
 <style lang="scss" scoped>
 .post-menu {
-  max-height: 68vh;
+  max-height: 60vh;
   overflow-y: auto;
   &__title {
     color: rgb(105, 102, 102);

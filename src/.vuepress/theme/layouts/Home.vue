@@ -83,7 +83,8 @@ export default {
       this.total = total
     },
     validHandler(con_val, ori_val) {
-      return ori_val.includes(con_val)
+      const con_val_arr = con_val.split()
+      return con_val_arr.some(v => ori_val.includes(v))
     }
   }
 }

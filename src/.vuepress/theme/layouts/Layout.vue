@@ -8,7 +8,14 @@
       <span class="ml-10 mr-10 pb-2"> | </span>
       <svg-icon icon-class="category" class="mr-6 f-14" />
       <span class="mr-8">分类于</span>
-      <span class="cursor-pointer category">{{ categories }}</span>
+      <span class="cursor-pointer category mr-10" @click="goHome">{{ categories }}</span>
+      <div v-if="busuanzi.open" class="flex-center">
+        <div id="busuanzi_container_page_pv" style="display: none;">
+          <span>{{ busuanzi.page_pv_header }}</span>
+          <span id="busuanzi_value_page_pv" class="mr-6 ml-6"></span>
+          <span>{{ busuanzi.page_pv_footer }}</span>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -27,10 +34,21 @@ export default {
       return this.$page
     },
     categories() {
-      return joinToStr(this.page.frontmatter.categories)
+      return joinToStr(this.page.frontmatter.categories, ',')
     },
     date() {
       return formatDay(this.page.frontmatter.date)
+    },
+    themeConfig() {
+      return this.$site.themeConfig
+    },
+    busuanzi() {
+      return this.themeConfig.service.busuanzi
+    }
+  },
+  methods: {
+    goHome() {
+      this.$router.push({path: '/', query: {category: this.categories}})
     }
   }
 }
