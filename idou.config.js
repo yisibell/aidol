@@ -49,5 +49,9 @@ module.exports = {
       page_pv_header: '本文总阅读量',
       page_pv_footer: '次'
     }
+  },
+  readProgress: {
+    open: true,
+    decimal: 0
   }
 }

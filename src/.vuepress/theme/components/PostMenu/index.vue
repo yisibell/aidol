@@ -9,7 +9,7 @@
       </template>
     </el-tree>
     <div class="post-menu__footer">
-     
+      <read-progress v-if="readProgress.open" />
     </div>
   </el-card>
 </template>
@@ -26,6 +26,11 @@ export default {
         children: 'children',
         label: 'title'
       }
+    }
+  },
+  computed: {
+    readProgress() {
+      return this.$site.themeConfig.readProgress
     }
   },
   mounted() {
