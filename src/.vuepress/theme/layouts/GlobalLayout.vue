@@ -9,6 +9,7 @@
             <component :is="layout" :key="layout" />
           </template>
           <template #page-bottom>
+            <b-share />
             <live-re />
           </template>
         </parent-layout>

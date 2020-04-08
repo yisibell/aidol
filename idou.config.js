@@ -39,7 +39,7 @@ module.exports = {
       type: 'city',
       uid: 'MTAyMC80OTQyOC8yNTkyMA=='
     },
-    // 不蒜子 访问统计服务
+    // 不蒜子 访问统计
     busuanzi: {
       open: true,
       site_uv_header: '本站访客数',
@@ -48,6 +48,11 @@ module.exports = {
       site_pv_footer: '次',
       page_pv_header: '本文总阅读量',
       page_pv_footer: '次'
+    },
+    // BShare 分享服务
+    BShare: {
+      open: true,
+      uuid: '3a6c60f8-51de-461b-a72f-055603a121fc'
     }
   },
   readProgress: {
