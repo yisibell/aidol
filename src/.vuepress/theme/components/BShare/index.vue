@@ -5,16 +5,19 @@
 -->
 <template>
   <div class="b-share">
-    <a v-if="BShare.open" class="bshareDiv" href="http://www.bshare.cn/share">去分享</a>
+    <a v-if="showbs" class="bshareDiv" href="//www.bshare.cn/share"></a>
   </div>
 </template>
 
 <script>
+import { isMobile } from '@theme/utils/adapt'
+
 export default {
   name: 'BShare',
   data() {
     return {
-      bp: 'qqmb,bsharesync,sinaminiblog,qzone,189share,sohuminiblog,renren,xinhuamb,tianya,shouji,ifengmb,neteasemb,qqxiaoyou,kaixin001,weixin,douban,qqim'
+      bp: 'qqmb,bsharesync,sinaminiblog,qzone,189share,sohuminiblog,renren,xinhuamb,tianya,shouji,ifengmb,neteasemb,qqxiaoyou,kaixin001,weixin,douban,qqim',
+      isMobile: false
     }
   },
   computed: {
@@ -23,10 +26,13 @@ export default {
     },
     BShare() {
       return this.themeConfig.service.BShare
+    },
+    showbs() {
+      return this.BShare.open && !this.isMobile
     }
   },
   mounted() {
-    this.BShare.open && this.init()
+    this.showbs && this.init()
   },
   methods: {
     init() {
@@ -35,9 +41,10 @@ export default {
       s.id = 'idou-bshare-script'
       s.type = 'text/javascript'
       s.charset = 'utf-8'
-      s.src = `http://static.bshare.cn/b/buttonLite.js#uuid=${this.BShare.uuid}&style=1&bp=${this.bp}`
+      s.src = `//static.bshare.cn/b/buttonLite.js#uuid=${this.BShare.uuid}&style=1&bp=${this.bp}`
       if (isExit) isExit.remove()
       document.body.appendChild(s)
+      this.isMobile = isMobile()
     }
   }
 }
@@ -45,11 +52,9 @@ export default {
 
 <style lang="scss" scoped>
 .b-share {
-  .bshareDiv {
-    position: fixed;
-    top: 50vh;
-    right: 15px;
-    z-index: 1024;
-  }
+  position: fixed;
+  top: 50vh;
+  right: 15px;
+  z-index: 1024;
 }
 </style>

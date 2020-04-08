@@ -1,5 +1,5 @@
 <template>
-  <div class="idou-sidebar" :style="{marginTop: marginTop + 'px'}">
+  <div v-if="showSideBar" class="idou-sidebar" :style="{marginTop: marginTop + 'px'}">
     <site-stats v-show="!onlyShowPostMenu" class="mb-15" />
     <ads-board v-show="!onlyShowPostMenu" class="mb-15" />
     <post-menu v-if="showPostMenu" />
@@ -11,6 +11,7 @@ import SiteStats from '@theme/components/SiteStats'
 import PostMenu from '@theme/components/PostMenu'
 import AdsBoard from '@theme/components/AdsBoard'
 import affix from '@theme/utils/affix'
+import { isMobile } from '@theme/utils/adapt'
 
 export default {
   name: 'IdouSidebar',
@@ -28,7 +29,8 @@ export default {
   data() {
     return {
       marginTop: this.topOffset,
-      onlyShowPostMenu: false // 是否仅显示文章导航
+      onlyShowPostMenu: false, // 是否仅显示文章导航
+      showSideBar: true
     }
   },
   computed: {
@@ -45,6 +47,7 @@ export default {
   },
   methods: {
     init() {
+      this.showSideBar = !isMobile()
       window.addEventListener('scroll', () => {
         const offset_y = window.pageYOffset
         const win_h = window.innerHeight

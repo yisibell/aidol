@@ -36,6 +36,7 @@ module.exports = {
   service: {
     // 来必力 评论服务
     LiveRe: {
+      open: true,
       type: 'city',
       uid: 'MTAyMC80OTQyOC8yNTkyMA=='
     },

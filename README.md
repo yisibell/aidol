@@ -6,7 +6,7 @@ A theme for vuePress but not only theme.
 
 你可以使用 `idou` 作为模板，快速开发生成属于你自己的静态博客。`idou` 正在持续更新中。
 
-<a href="https://elenhong.gitee.io/idou/" target="_blank">idou 演示地址</a>
+<a href="http://elenhong.gitee.io/idou/" target="_blank">idou 演示地址</a>
 
 # 构建
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="idou-toolbar" :style="{marginTop: marginTop + 'px'}">
+  <div v-if="showToolBar" class="idou-toolbar" :style="{marginTop: marginTop + 'px'}">
     <div class="item" @click="goAbout">
       <tooltip-icon content="关于" el-icon="el-icon-user-solid" />
     </div>
@@ -48,6 +48,7 @@
 <script>
 import affix from '@theme/utils/affix'
 import { toHash } from '@theme/utils'
+import { isMobile } from '@theme/utils/adapt'
 
 export default {
   name: 'IdouToolbar',
@@ -59,7 +60,8 @@ export default {
   },
   data() {
     return {
-      marginTop: this.topOffset
+      marginTop: this.topOffset,
+      showToolBar: true
     }
   },
   computed: {
@@ -98,6 +100,7 @@ export default {
     affix(this.topOffset, (top) => {
       this.marginTop = top
     })
+    this.showToolBar = !isMobile()
   },
   methods: {
     goAbout() {
