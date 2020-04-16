@@ -1,22 +1,22 @@
 {
-  "name": "idou",
+  "name": "{{name}}",
   "version": "1.0.0",
-  "description": "a theme for vuePress but not only theme.",
+  "description": "{{description}}",
   "scripts": {
     "dev": "vuepress dev src",
     "build": "vuepress build src"
   },
   "repository": {
     "type": "git",
-    "url": "git@gitee.com:elenhong/idou.git"
+    "url": "git@gitee.com:elenhong/aidol.git"
   },
   "keywords": [
-    "idou",
+    "aidol",
     "vuepress",
     "theme",
     "vue"
   ],
-  "author": "elenh",
+  "author": "{{author}}",
   "license": "MIT",
   "devDependencies": {
     "@vuepress/plugin-back-to-top": "^1.4.0",

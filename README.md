@@ -1,19 +1,29 @@
-# idou
+# aidol
 
 A theme for vuePress but not only theme.
 
-## 简介
+## Introduction
 
-你可以使用 `idou` 作为模板，快速开发生成属于你自己的静态博客。`idou` 正在持续更新中。
+`aidol` 是 `@aidol/cli` 的默认模板，用于快速开发生成属于你自己的静态博客。`aidol` 正在持续更新中。
 
-<a href="http://elenhong.gitee.io/idou/" target="_blank">idou 演示地址</a>
+<a href="http://elenhong.gitee.io/aidol/" target="_blank">aidol 演示地址</a>
 
-# 构建
+# @aidol/cli
+
+A command line tool for quickly building blog sites.
+
+## Installation
 
 ``` bash
-# 开发
-npm run dev
-
-# 生成
-npm run build
+npm i @aidol/cli -g
 ```
+
+## Usage
+
+``` bash
+aidol init <projectName>
+cd <projectName>
+npm install
+npm run dev
+```
+
