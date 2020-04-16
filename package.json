@@ -1,7 +1,7 @@
 {
-  "name": "{{name}}",
+  "name": "aidol",
   "version": "1.0.0",
-  "description": "{{description}}",
+  "description": "A personal blog based on aidol.",
   "scripts": {
     "dev": "vuepress dev src",
     "build": "vuepress build src"
@@ -16,7 +16,7 @@
     "theme",
     "vue"
   ],
-  "author": "{{author}}",
+  "author": "elenh",
   "license": "MIT",
   "devDependencies": {
     "@vuepress/plugin-back-to-top": "^1.4.0",

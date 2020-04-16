@@ -1,12 +1,12 @@
-const themeConfig = require('../../idou.config.js')
 const path = require('path')
-const siteInfo = themeConfig.siteInfo
+const themeConfig = require('../../aidol.config.js')
+const { siteInfo, deploy } = themeConfig
 function resolve(dir) {
   return path.join(__dirname, dir)
 }
 
 module.exports = {
-  base: '/idou/',
+  base: deploy.base,
   title: siteInfo.title,
   dest: './dist',
   description: siteInfo.description,
