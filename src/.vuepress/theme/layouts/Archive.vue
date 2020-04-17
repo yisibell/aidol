@@ -4,8 +4,8 @@
 
     <el-timeline>
       <el-timeline-item v-for="(v, i) in posts_in_year" :key="i" :timestamp="v.year" placement="top">
-        <el-card v-for="(item, k) in v.posts" @click.native="goPost(item.path)" class="cursor-pointer mb-15">
-          <h4 class="f-16 mb-10">{{ item.title }}</h4>
+        <el-card v-for="(item, k) in v.posts" class="mb-15">
+          <h4 class="f-16 mb-10 cursor-pointer" @click="goPost(item.path)">{{ item.title }}</h4>
           <div class="flex-inline fc-info f-12">
             <span>标签：</span>
             <el-tag v-for="(e, j) in item.tags" :key="j" size="mini" class="mr-6 mt-3 mb-3">{{ e }}</el-tag>

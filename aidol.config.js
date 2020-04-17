@@ -2,7 +2,6 @@
 module.exports = {
   nav: [
     { text: '首页', link: '/' },
-    { text: '指南', link: '/guide/' },
     { text: '关于', link: '/about/' },
     { text: '标签', link: '/tags/' },
     { text: '分类', link: '/categories/' },

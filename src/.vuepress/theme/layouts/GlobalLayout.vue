@@ -1,7 +1,7 @@
 <template>
   <div id="global-layout">
     <div class="global-layout__page">
-      <idou-toolbar class="global-layout__page__tool-bar" />
+      <base-toolbar class="global-layout__page__tool-bar" />
 
       <div class="global-layout__page__content">
         <parent-layout>
@@ -15,9 +15,9 @@
         </parent-layout>
       </div>
 
-      <idou-sidebar class="global-layout__page__side-bar" />
+      <base-sidebar class="global-layout__page__side-bar" />
     </div>
-    <idou-footer />
+    <base-footer />
   </div>
 </template>
 

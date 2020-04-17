@@ -34,21 +34,33 @@ export default {
       return this.service.LiveRe.open
     }
   },
+  watch: {
+    '$route': {
+      handler(r) {
+        this.loadedInit()
+      }
+    }
+  },
   mounted() {
-    this.showLiveRe && this.loadedInit()
+    this.loadedInit()
   },
   methods: {
-    init(s = 'script') {
-     
+    init() {
       const d = document
-      let j, e = d.getElementsByTagName(s)[0];
-
+      const aidolLivereScript = d.querySelector('#aidol-livere-script')
+      let j, e = d.getElementsByTagName('script')[0];
+      
       if (typeof LivereTower === 'function') return
 
-      j = d.createElement(s)
+      j = d.createElement('script')
       j.src = 'https://cdn-city.livere.com/js/embed.dist.js'
       j.async = true
+      j.id = 'aidol-livere-script'
       
+      if (aidolLivereScript) {
+        aidolLivereScript.remove()
+      }
+
       if (e) {
         e.parentNode.insertBefore(j, e)
       } else {
@@ -57,9 +69,11 @@ export default {
 
     },
     loadedInit() {
-      window.addEventListener('load', () => {
-        this.init()
-      })
+      if (this.showLiveRe) {
+        window.addEventListener('load', () => {
+          this.init()
+        })
+      }
     }
   }
 }
