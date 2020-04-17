@@ -4,11 +4,11 @@
     <div class="flex-center layout-body">
       <svg-icon icon-class="date" class="mr-6 f-14" />
       <span class="mr-8">发表于</span>
-      <span>{{ date }}</span>
+      <span>{{ date || '未知时间' }}</span>
       <span class="ml-10 mr-10 pb-2"> | </span>
       <svg-icon icon-class="category" class="mr-6 f-14" />
       <span class="mr-8">分类于</span>
-      <span class="cursor-pointer category mr-10" @click="goHome">{{ categories }}</span>
+      <span class="cursor-pointer category mr-10" @click="goHome">{{ categories || '暂无分类' }}</span>
       <div v-if="busuanzi.open" class="flex-center">
         <div id="busuanzi_container_page_pv" style="display: none;">
           <span>{{ busuanzi.page_pv_header }}</span>
@@ -23,6 +23,7 @@
 <script>
 import { joinToStr } from '@theme/utils'
 import { formatDay } from '@theme/utils/day'
+import busuanzi from '@theme/service/busuanzi'
 
 export default {
   name: 'Layout',
@@ -46,9 +47,22 @@ export default {
       return this.themeConfig.service.busuanzi
     }
   },
+  watch: {
+    '$route': {
+      handler() {
+        this.$nextTick(() => {
+          this.init()
+        })
+      },
+      immediate: true
+    }
+  },
   methods: {
     goHome() {
       this.$router.push({path: '/', query: {category: this.categories}})
+    },
+    init() {
+      busuanzi.install()
     }
   }
 }

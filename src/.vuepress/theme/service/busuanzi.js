@@ -7,13 +7,13 @@ const install = () => {
   const d = document
   const s = d.createElement('script')
   const body = d.querySelector('body')
-  const idouBusuanzi = d.querySelector('#idou-busuanzi-script')
+  const aidolBusuanzi = d.querySelector('#aidol-busuanzi-script')
 
-  s.id = 'idou-busuanzi-script'
+  s.id = 'aidol-busuanzi-script'
   s.async = true
   s.src = '//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'
 
-  if (idouBusuanzi) idouBusuanzi.remove()
+  if (aidolBusuanzi) aidolBusuanzi.remove()
   body.append(s)
 }
 
