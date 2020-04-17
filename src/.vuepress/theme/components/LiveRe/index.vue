@@ -37,8 +37,6 @@ export default {
     '$route': {
       handler(r) {
         this.$nextTick(() => {
-          const livereContainer = document.querySelector('#lv-container')
-          livereContainer.innerHTML = ''
           this.init()
         })
       }
@@ -73,14 +71,22 @@ export default {
         this.init()
       })
       window.addEventListener('scroll', () => {
-        const livereUtilsScripts = document.querySelectorAll('iframe[title="livere"]')
-        livereUtilsScripts && livereUtilsScripts.forEach((dom, i, arr) => {
+        this.removeExtraLv('lv-utils')
+        this.removeExtraLv('lv-comment')
+      })
+    },
+    removeExtraLv(attr) {
+      const livereUtilsScripts = document.querySelectorAll('iframe[title="livere"]')
+      const arr = [].filter.call(livereUtilsScripts, v => v.id.includes(attr))
+
+      if (livereUtilsScripts) {
+        arr.length > 1 && arr.forEach((dom, i, arr) => {
           const { id } = dom
-          if (id.includes('lv-utils') && i !== arr.length -1) {
+          if (i !== arr.length -1) {
             dom.remove()
           }
         })
-      })
+      }
     }
   }
 }
