@@ -5,9 +5,8 @@
 -->
 <template>
   <div v-if="showLiveRe" class="live-re-container">
-    <div id="lv-container" :data-id="type" :data-uid="uid">
-      <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
-    </div>
+    <div id="lv-container" :data-id="type" :data-uid="uid"></div>
+    <noscript>为正常使用来必力评论功能请激活 JavaScript</noscript>
   </div>
 </template>
 
@@ -37,7 +36,11 @@ export default {
   watch: {
     '$route': {
       handler(r) {
-        this.loadedInit()
+        this.$nextTick(() => {
+          const livereContainer = document.querySelector('#lv-container')
+          livereContainer.innerHTML = ''
+          this.init()
+        })
       }
     }
   },
@@ -46,13 +49,15 @@ export default {
   },
   methods: {
     init() {
+      if (!this.showLiveRe) return
+
       const d = document
+      const j = d.createElement('script')
       const aidolLivereScript = d.querySelector('#aidol-livere-script')
-      let j, e = d.getElementsByTagName('script')[0];
+      const livereUtilsScript = d.querySelector('iframe[title="livere"]')
       
       if (typeof LivereTower === 'function') return
 
-      j = d.createElement('script')
       j.src = 'https://cdn-city.livere.com/js/embed.dist.js'
       j.async = true
       j.id = 'aidol-livere-script'
@@ -60,20 +65,14 @@ export default {
       if (aidolLivereScript) {
         aidolLivereScript.remove()
       }
-
-      if (e) {
-        e.parentNode.insertBefore(j, e)
-      } else {
-        d.head.appendChild(j)
-      }
+      
+      d.head.appendChild(j)
 
     },
     loadedInit() {
-      if (this.showLiveRe) {
-        window.addEventListener('load', () => {
-          this.init()
-        })
-      }
+      window.addEventListener('load', () => {
+        this.init()
+      })
     }
   }
 }
