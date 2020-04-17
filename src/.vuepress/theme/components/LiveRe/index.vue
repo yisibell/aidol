@@ -54,7 +54,6 @@ export default {
       const d = document
       const j = d.createElement('script')
       const aidolLivereScript = d.querySelector('#aidol-livere-script')
-      const livereUtilsScript = d.querySelector('iframe[title="livere"]')
       
       if (typeof LivereTower === 'function') return
 
@@ -72,6 +71,15 @@ export default {
     loadedInit() {
       window.addEventListener('load', () => {
         this.init()
+      })
+      window.addEventListener('scroll', () => {
+        const livereUtilsScripts = document.querySelectorAll('iframe[title="livere"]')
+        livereUtilsScripts && livereUtilsScripts.forEach((dom, i, arr) => {
+          const { id } = dom
+          if (id.includes('lv-utils') && i !== arr.length -1) {
+            dom.remove()
+          }
+        })
       })
     }
   }
