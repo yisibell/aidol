@@ -1,8 +1,8 @@
 <template>
-  <el-card class="site-stats">
+  <el-card class="site-stats scrollbar-mini">
     <div class="flex-inline">
-      <el-avatar :size="80" src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" class="mr-10"></el-avatar>
-      <p>hello, idou!</p>
+      <el-avatar :size="80" :src="$withBase('/avatar.png')" class="mr-10"></el-avatar>
+      <p class="author-desc">{{ author.description }}</p>
     </div>
     <div class="site-stats-content flex-center">
       <div class="site-stats-content__item" @click="goHome">
@@ -39,6 +39,12 @@ export default {
     },
     category_count() {
       return this.origin_categories.length
+    },
+    themeConfig() {
+      return this.$site.themeConfig
+    },
+    author() {
+      return this.themeConfig.author
     }
   },
   methods: {
@@ -57,6 +63,10 @@ export default {
 
 <style lang="scss" scoped>
 .site-stats {
+  max-height: 450px;
+  .author-desc {
+    word-break: break-all;
+  }
   &-content {
     margin-top: 15px;
 

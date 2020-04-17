@@ -13,6 +13,7 @@ module.exports = {
   sidebar: false,
   smoothScroll: true,
   lastUpdated: '最后更新于', // string | boolean
+  logo: '/logo.png',
   author: {
     name: 'elenh',
     description: 'hello, aidol!',

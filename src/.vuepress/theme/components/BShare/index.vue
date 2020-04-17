@@ -53,8 +53,8 @@ export default {
 <style lang="scss" scoped>
 .b-share {
   position: fixed;
-  top: 50vh;
-  right: 15px;
+  bottom: 15vh;
+  right: 5vw;
   z-index: 1024;
 }
 </style>

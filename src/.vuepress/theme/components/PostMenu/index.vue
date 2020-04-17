@@ -83,7 +83,6 @@ export default {
 <style lang="scss" scoped>
 .post-menu {
   max-height: 60vh;
-  overflow-y: auto;
   &__title {
     color: rgb(105, 102, 102);
     font-size: 13px;
