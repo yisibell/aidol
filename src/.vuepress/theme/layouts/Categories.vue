@@ -45,7 +45,7 @@ export default {
     &__item {
       height: 35px;
       line-height: 35px;
-      list-style-type: disc;
+      list-style-type: square;
       cursor: pointer;
       font-size: 16px;
       vertical-align: middle;

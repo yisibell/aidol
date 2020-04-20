@@ -96,10 +96,6 @@ export default {
   .post-item {
     margin-bottom: 15px;
     border-bottom: 1px solid #ccc;
-
-    /deep/ .el-tag--mini {
-      line-height: 14px;
-    }
   }
 }
 </style>
