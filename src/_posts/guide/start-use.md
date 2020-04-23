@@ -95,19 +95,19 @@ $ npm run build
 
 找到配置 **Gitee Pages** 的入口：
 
-<img src="/post_imgs/start-use/gitee-pages-enter.png" />
+<img :src="$withBase('/post_imgs/start-use/gitee-pages-enter.png')" />
 
 然后再配置 **部署分支（默认使用master）** 和 **部署目录（填写 dist）**。
 
-<img src="/post_imgs/start-use/gitee-pages-start.png" />
+<img :src="$withBase('/post_imgs/start-use/gitee-pages-start.png')" />
 
 点击 **启动**，等待部署... 大概 10几秒的时间，非常快速。
 
-<img src="/post_imgs/start-use/gitee-pages-deploy.png" />
+<img :src="$withBase('/post_imgs/start-use/gitee-pages-deploy.png')" />
 
 部署成功后，会自动生成博客访问地址。
 
-<img src="/post_imgs/start-use/gitee-pages-visit.png" />
+<img :src="$withBase('/post_imgs/start-use/gitee-pages-visit.png')" />
 
 点击链接就可以查看你的博客了。
 
