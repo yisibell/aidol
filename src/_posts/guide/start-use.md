@@ -90,3 +90,38 @@ $ npm run build
 ## 发布
 
 这里推荐使用 <a href="https://www.gitee.com"> 码云Gitee Pages </a> 进行博客内容的部署。
+
+首先在 **Gitee** 上创建放置你博客的仓库，再将整个构建项目推送至仓库。
+
+找到配置 **Gitee Pages** 的入口：
+
+<img src="/post_imgs/start-use/gitee-pages-enter.png" />
+
+然后再配置 **部署分支（默认使用master）** 和 **部署目录（填写 dist）**。
+
+<img src="/post_imgs/start-use/gitee-pages-start.png" />
+
+点击 **启动**，等待部署... 大概 10几秒的时间，非常快速。
+
+<img src="/post_imgs/start-use/gitee-pages-deploy.png" />
+
+部署成功后，会自动生成博客访问地址。
+
+<img src="/post_imgs/start-use/gitee-pages-visit.png" />
+
+点击链接就可以查看你的博客了。
+
+
+### 自定义域名？
+
+**Gitee Pages** 不支持 **CNAME** 协议， 但是它是支持自定义域名的，不过它是收费的，一年 `99 元`。它提供了一下这几条服务：
+
+1. 支持自定义域名支持 
+2. HTTPS
+3. 支持推送后自动部署 （免费版，需要用户提交完构建后的代码后，到**Gitee Pages** 部署页面，手动点击 **更新**，站点才会重新部署）
+
+但是，初次使用 **Gitee Pages** 的用户有 1个 月的 **Gitee Pages Pro** 服务试用期，所以，你可以先体验一下它的便利性，再决定是不是要花这个钱。
+
+## 结语
+
+这就是使用 **aidol** 创建个人博客的过程，是不是很简单？后面，文档会介绍 **aidol** 其他功能的使用方式。玩得愉快！
