@@ -69,7 +69,7 @@ categories:
 ---
 ```
 
-如上的内容，是编写在 `markdown` 文件的头部，其称为 `YAML front matter`，使用的是 `YAML` 语法，表示文章信息，比如文章标题 `title`，分布日期 `date`，文章标签 `tags`(数据类型为 Array，因为你会未某个文章打多个标签)，文章分类 `categories`(数据类型为 Array)。
+如上的内容，是编写在 `markdown` 文件的头部，其称为 `YAML front matter`，使用的是 `YAML` 语法，表示文章信息，比如文章标题 `title`，分布日期 `date`，文章标签 `tags`(数据类型为 Array，因为你会给某个文章打多个标签)，文章分类 `categories`(数据类型同样为 Array)。
 
 以上 4 个字段数据是必须的，通常，你也只需定义这 4 个数据即可。
 
@@ -113,7 +113,7 @@ $ npm run build
 
 ### 自定义域名？
 
-**Gitee Pages** 不支持 **CNAME** 协议， 但是它是支持自定义域名的，不过它是收费的，一年 `99 元`。它提供了一下这几条服务：
+**Gitee Pages** 不支持 **CNAME** 协议， 但是它是支持自定义域名的，不过它是收费的，一年 `99 元`。它提供了以下这几条服务：
 
 1. 支持自定义域名支持 
 2. HTTPS
