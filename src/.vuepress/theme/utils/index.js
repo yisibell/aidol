@@ -1,4 +1,4 @@
-export const createLink = (href = '', type = 'link', target = 'head') => {
+export const createLink = (href = '', {type = 'link', target = 'head', attrs = {}} = {}) => {
   const el_target = document.querySelector(target)
   const link = document.createElement(type)
 
@@ -6,6 +6,12 @@ export const createLink = (href = '', type = 'link', target = 'head') => {
     link.href = href
   } else {
     link.src = href
+  }
+
+  for (let k in attrs) {
+    if (attrs.hasOwnProperty(k)) {
+      link[k] = attrs[k]
+    }
   }
   
   el_target.appendChild(link)
