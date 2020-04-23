@@ -23,7 +23,7 @@
 
 <script>
 import ParentLayout from '@parent-theme/layouts/Layout.vue'
-
+import { createLink } from '@theme/utils'
 export default {
   name: 'GlobalLayout',
   components: {
@@ -45,6 +45,20 @@ export default {
         return 'Layout'
       }
       return 'NotFound'
+    }
+  },
+  mounted() {
+    this.init()
+  },
+  methods: {
+    init() {
+      const favicon = this.$withBase('/favicon.ico')
+      createLink(favicon, {
+        attrs: {
+          rel: 'shortcut icon',
+          id: 'aidol-favicon'
+        }
+      })
     }
   }
 }
