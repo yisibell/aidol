@@ -37,11 +37,13 @@ export default {
   methods: {
     init() {
       const s = document.createElement('script')
-      const isExit = document.querySelector('#idou-bshare-script')
-      s.id = 'idou-bshare-script'
-      s.type = 'text/javascript'
+      const isExit = document.querySelector('#aidol-bshare-script')
+
+      s.id = 'aidol-bshare-script'
       s.charset = 'utf-8'
       s.src = `//static.bshare.cn/b/buttonLite.js#uuid=${this.BShare.uuid}&style=1&bp=${this.bp}`
+      s.defer = true
+      
       if (isExit) isExit.remove()
       document.body.appendChild(s)
       this.isMobile = isMobile()

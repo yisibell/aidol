@@ -10,8 +10,8 @@ const install = () => {
   const aidolBusuanzi = d.querySelector('#aidol-busuanzi-script')
 
   s.id = 'aidol-busuanzi-script'
-  s.async = true
   s.src = '//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'
+  s.defer = true
 
   if (aidolBusuanzi) aidolBusuanzi.remove()
   body.append(s)
