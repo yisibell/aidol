@@ -13,7 +13,7 @@ categories:
 
 # 定义
 
-**aidol.config.js** 是 <a href="https://vuepress.vuejs.org/zh/theme/default-theme-config.html">vuepress默认主题配置</a> 的混合体。所以 **vuepress默认主题** 的一些配置项你也可以在 **aidol.config.js** 中使用，但某些配置项的修改会影响到 **aidol** 的布局体现，那这些配置建议不要修改（除非你需要修改 aidol 的原始实现）。
+**aidol.config.js** 是 <a target="_blank" href="https://vuepress.vuejs.org/zh/theme/default-theme-config.html">vuepress默认主题配置</a> 的混合体。所以 **vuepress默认主题** 的一些配置项你也可以在 **aidol.config.js** 中使用，但某些配置项的修改会影响到 **aidol** 的布局体现，那这些配置建议不要修改（除非你需要修改 aidol 的原始实现）。
 
 # 配置
 
@@ -108,13 +108,13 @@ LiveRe: {
 }
 ```
 
-**aidol** 已经为你实现了对接 **来必力** 免费版评论服务的所有功能，所以你只需要去 <a href="https://www.livere.com/login_form">来必力官网</a> 注册一个账号获取到你的 `uid` 配置到上方即可。
+**aidol** 已经为你实现了对接 **来必力** 免费版评论服务的所有功能，所以你只需要去 <a target="_blank" href="https://www.livere.com/login_form">来必力官网</a> 注册一个账号获取到你的 `uid` 配置到上方即可。
 
 具体的注册流程这里就不展开了（因为真的很简单）。有问题可以留言！
 
 ### 不蒜子访问统计
 
-这是个开源的站点页面访问统计服务，官网链接：<a href="http://ibruce.info/2015/04/04/busuanzi/">busuanzi</a>。
+这是个开源的站点页面访问统计服务，官网链接：<a target="_blank" href="http://ibruce.info/2015/04/04/busuanzi/">busuanzi</a>。
 
 ``` js
 busuanzi: {
@@ -152,7 +152,7 @@ BShare: {
 }
 ```
 
-想要使用她，同样的，也是先去 <a href="http://www.bshare.cn/"> BShare </a> 注册一个账号，然后到管理页面获取到 `uuid` 配置到上方即可。
+想要使用她，同样的，也是先去 <a target="_blank" href="http://www.bshare.cn/"> BShare </a> 注册一个账号，然后到管理页面获取到 `uuid` 配置到上方即可。
 
 
 ## readProgress
@@ -200,7 +200,7 @@ BShare: {
 ```
 
 ::: warning
-对于 <a href="https://vuepress.vuejs.org/zh/theme/default-theme-config.html#%E4%BE%A7%E8%BE%B9%E6%A0%8F"> vuepress默认主题-侧边栏</a> 的相关配置，在 **aidol** 中都不可使用。
+对于 <a target="_blank" href="https://vuepress.vuejs.org/zh/theme/default-theme-config.html#%E4%BE%A7%E8%BE%B9%E6%A0%8F"> vuepress默认主题-侧边栏</a> 的相关配置，在 **aidol** 中都不可使用。
 因为 **aidol** 的布局实现，只继承了 **@vuepress/theme-default** 的 **导航栏** 部分。
 :::
 

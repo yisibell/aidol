@@ -89,7 +89,7 @@ $ npm run build
 
 ## 发布
 
-这里推荐使用 <a href="https://www.gitee.com"> 码云Gitee Pages </a> 进行博客内容的部署。
+这里推荐使用 <a target="_blank" href="https://www.gitee.com"> 码云Gitee Pages </a> 进行博客内容的部署。
 
 首先在 **Gitee** 上创建放置你博客的仓库，再将整个构建项目推送至仓库。
 
