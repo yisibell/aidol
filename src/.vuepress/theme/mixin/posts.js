@@ -16,7 +16,7 @@ export default {
         
         return {
           key,
-          path: path.replace('.html', ''),
+          path,
           date: formatDay(date),
           date_ms,
           title,
