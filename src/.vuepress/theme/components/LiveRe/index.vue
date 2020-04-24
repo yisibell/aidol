@@ -55,15 +55,15 @@ export default {
       
       if (typeof LivereTower === 'function') return
 
-      j.src = 'https://cdn-city.livere.com/js/embed.dist.js'
-      j.async = true
       j.id = 'aidol-livere-script'
+      j.src = 'https://cdn-city.livere.com/js/embed.dist.js'
+      j.defer = true
       
       if (aidolLivereScript) {
         aidolLivereScript.remove()
       }
       
-      d.head.appendChild(j)
+      d.body.appendChild(j)
 
     },
     loadedInit() {
