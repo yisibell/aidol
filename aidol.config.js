@@ -8,8 +8,6 @@ module.exports = {
     { text: '归档', link: '/archive/' },
     { text: '作者博客', link: 'http://www.hongwenqing.com' },
   ],
-  displayAllHeaders: true,
-  activeHeaderLinks: true,
   sidebar: false,
   smoothScroll: true,
   lastUpdated: '最后更新于', // string | boolean
