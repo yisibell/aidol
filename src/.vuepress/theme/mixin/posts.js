@@ -13,10 +13,10 @@ export default {
         const { path, key, excerpt } = v
         const { title, date, tags, categories } = v.frontmatter
         const date_ms = +new Date(date)
-
+        
         return {
           key,
-          path,
+          path: path.replace('.html', ''),
           date: formatDay(date),
           date_ms,
           title,

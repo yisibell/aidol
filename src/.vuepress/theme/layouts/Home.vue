@@ -74,7 +74,8 @@ export default {
       this.handleCurrentChange(1)
     },
     linkToPost(path) {
-      this.$router.push({path})
+      console.log('path:', path)
+      this.$router.push({ path })
     },
     handleCurrentChange(index) {
       this.form.page = index
