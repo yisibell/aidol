@@ -1,6 +1,6 @@
 ---
 title: 使用markdown编写文章的一些技巧
-date: 2020-4-26
+date: 2020-04-23
 tags:
 - markdown
 - markdown-it

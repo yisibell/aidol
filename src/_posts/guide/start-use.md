@@ -121,6 +121,8 @@ $ npm run build
 
 但是，初次使用 **Gitee Pages** 的用户有 1个 月的 **Gitee Pages Pro** 服务试用期，所以，你可以先体验一下它的便利性，再决定是不是要花这个钱。
 
+更多的部署方式，请参考 <a href="https://vuepress.vuejs.org/zh/guide/deploy.html#github-pages" target="_blank"> 部署 </a>。
+
 # 结语
 
 这就是使用 **aidol** 创建个人博客的过程，是不是很简单？后面，文档会介绍 **aidol** 其他功能的使用方式。玩得愉快！
