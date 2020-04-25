@@ -11,7 +11,7 @@ export default {
 
       return pages.filter(v => v.path.indexOf(`/${postDirName}`) >= 0).map(v => {
         const { path, key, excerpt } = v
-        const { title, date, tags, categories } = v.frontmatter
+        const { title, date, tags, categories, passcode } = v.frontmatter
         const date_ms = +new Date(date)
         
         return {
@@ -22,7 +22,8 @@ export default {
           title,
           tags,
           categories,
-          excerpt
+          excerpt,
+          passcode
         }
       }).sort((a, b) => {
         const date_a = a.date_ms

@@ -3,6 +3,7 @@ import './plugins/element-ui/2.13.0/lib/theme-chalk/index.css'
 import './styles/main.scss'
 import Icons from './icons'
 import CustomUI from './components'
+import Layer from './utils/layer'
 
 export default ({
   Vue, // VuePress 正在使用的 Vue 构造函数
@@ -16,4 +17,5 @@ export default ({
   Vue.use(Icons)
   // 自定义UI
   Vue.use(CustomUI)
+  Vue.prototype.$layer = Layer
 }
