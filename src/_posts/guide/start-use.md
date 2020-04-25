@@ -1,6 +1,6 @@
 ---
 title: 开始使用
-date: 2020-04-20
+date: 2020-04-25
 tags:
 - aidol开始使用
 - vuepress
@@ -79,7 +79,7 @@ categories:
 执行 `npm run dev` 你可以看到新编写的文章，已经自动按照发布日期 `date` 排序好了，点击 **阅读全文** 查看一下你精心编辑的文章。
 
 
-## 构建
+# 构建
 
 文章编辑完，预览效果无误后，就可以执行构建，准备发布了。使用如下命令进行构建，生成的站点静态文件会被输出到项目根目录下的 `dist` 文件夹中。其可以被部署到任何静态服务器上。
 
@@ -87,7 +87,7 @@ categories:
 $ npm run build
 ```
 
-## 发布
+# 发布
 
 这里推荐使用 <a target="_blank" href="https://www.gitee.com"> 码云Gitee Pages </a> 进行博客内容的部署。
 
