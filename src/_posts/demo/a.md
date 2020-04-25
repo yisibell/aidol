@@ -1,15 +1,17 @@
 ---
-title: 文章1
+title: 这是一篇带密码锁的文章
 date: 2020-03-25
 tags: 
  - vuepress
  - vue
  - test
+ - lock
 categories:
- - 分类1
+ - 带锁文章
+passcode: 123456
 ---
 
-这是一篇很有趣的文章...
+这是一篇很有趣的文章，输入密码才可访问。
 
 <!-- more -->
 

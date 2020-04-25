@@ -47,15 +47,8 @@ export default {
       return this.themeConfig.service.busuanzi
     }
   },
-  watch: {
-    '$route': {
-      handler() {
-        this.$nextTick(() => {
-          this.init()
-        })
-      },
-      immediate: true
-    }
+  mounted() {
+    this.init()
   },
   methods: {
     goHome() {

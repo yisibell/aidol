@@ -60,5 +60,9 @@ module.exports = {
   readProgress: {
     open: true,
     decimal: 0
+  },
+  passcode: {
+    tips_text: '该文章为私密文章，请输入通行码!',
+    error_text: '通行码错误!'
   }
 }
