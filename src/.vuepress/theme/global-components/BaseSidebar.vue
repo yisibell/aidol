@@ -54,6 +54,9 @@ export default {
        
         this.onlyShowPostMenu = offset_y > win_h / 2
       })
+      window.addEventListener('resize', () => {
+        this.showSideBar = !isMobile()
+      })
     }
   }
 }

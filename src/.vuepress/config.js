@@ -18,7 +18,7 @@ module.exports = {
     extractHeaders: ['h1', 'h2', 'h3', 'h4', 'h6'],
     lineNumbers: true
   },
-  cache: false,
+  cache: true,
   chainWebpack(config) {
     // 变更 url-loader 不处理指定文件夹下作为icon使用的svg文件
     config.module
