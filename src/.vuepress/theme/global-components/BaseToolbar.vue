@@ -97,10 +97,7 @@ export default {
     }
   },
   mounted() {
-    affix(this.topOffset, (top) => {
-      this.marginTop = top
-    })
-    this.showToolBar = !isMobile()
+    this.init()
   },
   methods: {
     goAbout() {
@@ -108,6 +105,15 @@ export default {
     },
     goComment() {
       toHash('lv-container')
+    },
+    init() {
+      affix(this.topOffset, (top) => {
+        this.marginTop = top
+      })
+      this.showToolBar = !isMobile()
+      window.addEventListener('resize', () => {
+        this.showToolBar = !isMobile()
+      })
     }
   }
 }
