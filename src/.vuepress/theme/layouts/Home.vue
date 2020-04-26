@@ -9,7 +9,7 @@
       </div>
       <div v-html="v.excerpt"></div>
       <div class="flex-center mb-15">
-        <el-button size="mini" type="info" @click="linkToPost(v)">阅读全文 <svg-icon v-if="v.passcode" icon-class="lock" /></el-button>
+        <link-to-post :path="v.path" :passcode="v.passcode" />
       </div>
     </div>
 
@@ -31,10 +31,14 @@
 <script>
 import paging from '@theme/utils/paging'
 import posts_mixin from '@theme/mixin/posts'
+import LinkToPost from '@theme/components/linkToPost'
 
 export default {
   name: 'Home',
   mixins: [posts_mixin],
+  components: {
+    LinkToPost
+  },
   data() {
     return {
       posts: [],
@@ -57,12 +61,6 @@ export default {
         return [{key: 'categories', value: category, validHandler: this.validHandler}]
       } 
       return null
-    },
-    themeConfig() {
-      return this.$site.themeConfig
-    },
-    passcodeLock() {
-      return this.themeConfig.passcode
     }
   },
   mounted() {
@@ -78,16 +76,6 @@ export default {
   methods: {
     init() {
       this.handleCurrentChange(1)
-    },
-    linkToPost({ path, passcode }) {
-      if (!passcode) return this.$router.push({ path })
-      this.$layer.prompt(this.passcodeLock.tips_text, { inputType: 'text' }).then(code => {
-        if (code === passcode.toString()) {
-          this.$router.push({ path })
-          return
-        }
-        this.$layer.notify(this.passcodeLock.error_text, { type: 'error' })
-      })
     },
     handleCurrentChange(index) {
       this.form.page = index
