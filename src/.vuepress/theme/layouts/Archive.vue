@@ -5,7 +5,7 @@
     <el-timeline>
       <el-timeline-item v-for="(v, i) in posts_in_year" :key="i" :timestamp="v.year" placement="top">
         <el-card v-for="(item, k) in v.posts" class="mb-15">
-          <h4 class="f-16 mb-10 cursor-pointer" @click="goPost(item.path)">{{ item.title }}</h4>
+          <link-to-post :path="item.path" :text="item.title" :passcode="item.passcode" type="h4" class="mb-10" />
           <div class="flex-inline fc-info f-12">
             <span>标签：</span>
             <el-tag v-for="(e, j) in item.tags" :key="j" size="mini" class="mr-6 mt-3 mb-3">{{ e }}</el-tag>
@@ -34,9 +34,14 @@
 <script>
 import posts_mixin from '@theme/mixin/posts'
 import paging from '@theme/utils/paging'
+import LinkToPost from '@theme/components/linkToPost'
+
 export default {
   name: 'Archive',
   mixins: [posts_mixin],
+  components: {
+    LinkToPost
+  },
   data() {
     return {
       total: 0,
@@ -70,9 +75,6 @@ export default {
   methods: {
     init() {
       this.handleCurrentChange(1)
-    },
-    goPost(path) {
-      this.$router.push({ path })
     },
     handleCurrentChange(index) {
       this.form.page = index
