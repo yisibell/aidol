@@ -4,6 +4,7 @@ import './styles/main.scss'
 import Icons from './icons'
 import CustomUI from './components'
 import Layer from './utils/layer'
+import MarkdownComponents from './markdown-components'
 
 export default ({
   Vue, // VuePress 正在使用的 Vue 构造函数
@@ -17,5 +18,8 @@ export default ({
   Vue.use(Icons)
   // 自定义UI
   Vue.use(CustomUI)
+  // 弹出层
   Vue.prototype.$layer = Layer
+  // markdown 文件专用组件
+  Vue.use(MarkdownComponents)
 }
