@@ -85,6 +85,26 @@ passcode: 123456
 ...
 ```
 
+# 插入图片
+
+**aidol** 提供了 `<aidol-image />` 组件用来在文章中插入一张或一组图片。
+
+输入：
+
+``` md
+<aidol-image :links="['https://fuss10.elemecdn.com/8/27/f01c15bb73e1ef3793e64e6b7bbccjpeg.jpeg', 'https://fuss10.elemecdn.com/1/8e/aeffeb4de74e2fde4bd74fc7b4486jpeg.jpeg']" />
+```
+
+输出：
+
+<aidol-image :links="['https://fuss10.elemecdn.com/8/27/f01c15bb73e1ef3793e64e6b7bbccjpeg.jpeg', 'https://fuss10.elemecdn.com/1/8e/aeffeb4de74e2fde4bd74fc7b4486jpeg.jpeg']" />
+
+::: tip 提示
+`links` prop 表示图片地址，数据类型为 `[Array, String]`。即你可以在一处使用多张图片，也可以只应用一张。
+当图片地址以 `//` , `http://` 或 `https://` 开头时，那 `<aidol-image />` 会将其当做 **外链地址**。
+否则，地址会被 <a href="https://vuepress.vuejs.org/zh/guide/assets.html" target="_blank">$withBase</a> 方法处理为站内地址。
+:::
+
 # 提示块
 
 这个特殊的语法，通常用来强调文章中的某些信息，有比较醒目的样式。
