@@ -16,7 +16,7 @@ module.exports = {
   ],
   markdown: {
     extractHeaders: ['h1', 'h2', 'h3', 'h4', 'h6'],
-    lineNumbers: true
+    lineNumbers: false
   },
   cache: true,
   chainWebpack(config) {
