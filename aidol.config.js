@@ -68,7 +68,7 @@ module.exports = {
   // algolia 搜索
   algolia: {
     // 替换为你的 algolia apiKey 及 indexName
-    apiKey: 'a2134b272ce84c921fb816ceef2f8bd3',
+    apiKey: '0e84795c7e1fec8255fc973d2bc8d81c',
     indexName: 'aidol'
   }
 }
