@@ -39,7 +39,7 @@ module.exports = {
     LiveRe: {
       open: true,
       type: 'city',
-      uid: 'MTAyMC80OTQyOC8yNTkyMA=='
+      uid: 'MTAyMC80OTQyOC8yNTkyMA==' // 替换为你的
     },
     // 不蒜子 访问统计
     busuanzi: {
@@ -54,7 +54,7 @@ module.exports = {
     // BShare 分享服务
     BShare: {
       open: true,
-      uuid: '3a6c60f8-51de-461b-a72f-055603a121fc'
+      uuid: '3a6c60f8-51de-461b-a72f-055603a121fc' // 替换为你的
     }
   },
   readProgress: {
@@ -64,5 +64,11 @@ module.exports = {
   passcode: {
     tips_text: '该文章为私密文章，请输入通行码!',
     error_text: '通行码错误!'
-  }
+  },
+  // algolia 搜索
+  // algolia: {
+  //   // 替换为你的 algolia apiKey 及 indexName
+  //   apiKey: 'a2134b272ce84c921fb816ceef2f8bd3',
+  //   indexName: 'aidol'
+  // }
 }
