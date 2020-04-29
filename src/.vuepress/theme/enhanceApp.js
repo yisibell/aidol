@@ -1,10 +1,10 @@
-import ElementUI from './plugins/element-ui/2.13.0/lib/index.js'
-import './plugins/element-ui/2.13.0/lib/theme-chalk/index.css'
-import './styles/main.scss'
+import ElementUI from 'element-ui'
 import Icons from './icons'
 import CustomUI from './components'
 import Layer from './utils/layer'
 import MarkdownComponents from './markdown-components'
+
+import './styles/main.scss'
 
 export default ({
   Vue, // VuePress 正在使用的 Vue 构造函数

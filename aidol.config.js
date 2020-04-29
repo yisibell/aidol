@@ -66,9 +66,8 @@ module.exports = {
     error_text: '通行码错误!'
   },
   // algolia 搜索
-  // algolia: {
-  //   // 替换为你的 algolia apiKey 及 indexName
-  //   apiKey: 'a2134b272ce84c921fb816ceef2f8bd3',
-  //   indexName: 'aidol'
-  // }
+  algolia: {
+    // apiKey: 'a2134b272ce84c921fb816ceef2f8bd3',
+    // indexName: 'aidol'
+  }
 }
