@@ -105,6 +105,32 @@ passcode: 123456
 否则，地址会被 <a href="https://vuepress.vuejs.org/zh/guide/assets.html" target="_blank">$withBase</a> 方法处理为站内地址。
 :::
 
+# 使用链接
+
+你可以使用 `<aidol-link />` 组件渲染 `<a>` 链接。
+
+输入：
+
+``` md
+<aidol-link href="http://elenhong.gitee.io/aidol/"> aidol官网 </aidol-link>
+```
+
+输出：
+
+<aidol-link href="http://elenhong.gitee.io/aidol/"> aidol官网 </aidol-link>
+
+另外，你还可以使用 `type` prop 定义她的类型，可选值有：`primary / success / warning / danger / info`。
+
+输入：
+
+``` md
+<aidol-link type="success" href="http://elenhong.gitee.io/aidol/"> aidol官网 </aidol-link>
+```
+
+输出：
+
+<aidol-link type="success" href="http://elenhong.gitee.io/aidol/"> aidol官网 </aidol-link>
+
 # 提示块
 
 这个特殊的语法，通常用来强调文章中的某些信息，有比较醒目的样式。
@@ -251,5 +277,8 @@ export default {
 # 其他
 
 除了以上的一些用法，你还可以在 **markdown** 中使用 **HTML标签**，比如 `<a>` 、`<img>` 等。
+
 很重要的一点，由于 **vuepress** 的加持，使得你可以在 **markdown** 中使用 **vue组件**。
-这样一来，一些集中式的功能，都可以被抽象成 **vue组件** 供 **markdown** 使用。**aidol** 会提供一些案例供用户使用，你也可以自己扩展她。
+这样一来，一些集中式的功能，都可以被抽象成 **vue组件** 供 **markdown** 使用。**aidol** 提供一些供用户使用，你也可以自己扩展她。
+
+由于，**aidol** 中引用了 <aidol-link href="https://element.faas.ele.me/#/zh-CN/component/icon"> element-ui </aidol-link>，所以你也可以在 **markdown** 中使用 **element-ui** 的所有组件。
