@@ -17,7 +17,7 @@ passcode: 123456
 
 # 标题1
 
-这是一个段落...
+这是一个段落，<aidol-link type="primary"> 链接 </aidol-link>
 
 # 标题2
 

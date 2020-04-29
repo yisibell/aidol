@@ -1,8 +1,11 @@
 import AidolImage from './AidolImage'
+import AidolLink from './AidolLink'
 
 const install = (Vue) => {
   [
-    AidolImage
+    AidolImage,
+    AidolLink
+    
   ].forEach(v => {
     Vue.component(v.name, v)
   })
