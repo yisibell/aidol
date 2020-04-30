@@ -85,7 +85,9 @@ passcode: 123456
 ...
 ```
 
-# 插入图片
+# 在 markdown 中使用组件
+
+## 插入图片
 
 **aidol** 提供了 `<aidol-image />` 组件用来在文章中插入一张或一组图片。
 
@@ -105,7 +107,7 @@ passcode: 123456
 否则，地址会被 <a href="https://vuepress.vuejs.org/zh/guide/assets.html" target="_blank">$withBase</a> 方法处理为站内地址。
 :::
 
-# 使用链接
+## 使用链接
 
 你可以使用 `<aidol-link />` 组件渲染 `<a>` 链接。
 
@@ -130,6 +132,26 @@ passcode: 123456
 输出：
 
 <aidol-link type="success" href="http://elenhong.gitee.io/aidol/"> aidol官网 </aidol-link>
+
+## Badge 标记
+
+你可以使用 `<badge text="这是一个标记" />` 打个提示标记（vuepress 默认提供）。
+
+**Props:**
+
+- text - string
+- type - string, 可选值： `"tip"|"warning"|"error"`，默认值是： `"tip"`
+- vertical - string, 可选值： `"top"|"middle"`，默认值是： `"top"`
+
+输入：
+
+``` md
+标题 <badge text="Beta" type="warning" />
+```
+
+输出：
+
+标题 <badge text="Beta" type="warning" />
 
 # 提示块
 
@@ -203,13 +225,14 @@ VuePress 使用了 <a href="https://prismjs.com/"> Prism </a> 来为 markdown �
 
 输入：
 
-``` md
+```` md
 ``` js
 export default {
   name: 'MyComponent',
   // ...
-}```
+}
 ```
+````
 
 输出：
 
@@ -222,7 +245,7 @@ export default {
 
 输入：
 
-``` md
+```` md
 ``` html
 <ul>
   <li
@@ -231,8 +254,9 @@ export default {
   >
     {{ todo.text }}
   </li>
-</ul>```
+</ul>
 ```
+````
 
 输出：
 
@@ -251,7 +275,7 @@ export default {
 
 输入：
 
-``` md
+```` md
 ``` js {4}
 export default {
   data () {
@@ -259,8 +283,9 @@ export default {
       msg: 'Highlighted!'
     }
   }
-}```
+}
 ```
+````
 
 输出：
 
@@ -279,6 +304,6 @@ export default {
 除了以上的一些用法，你还可以在 **markdown** 中使用 **HTML标签**，比如 `<a>` 、`<img>` 等。
 
 很重要的一点，由于 **vuepress** 的加持，使得你可以在 **markdown** 中使用 **vue组件**。
-这样一来，一些集中式的功能，都可以被抽象成 **vue组件** 供 **markdown** 使用。**aidol** 提供一些供用户使用，你也可以自己扩展她。
+这样一来，一些集中式的功能，都可以被抽象成 **vue组件** 供 **markdown** 使用。**aidol** 实现了一些供用户使用，你也可以自己扩展她。
 
 由于，**aidol** 中引用了 <aidol-link href="https://element.faas.ele.me/#/zh-CN/component/icon"> element-ui </aidol-link>，所以你也可以在 **markdown** 中使用 **element-ui** 的所有组件。
