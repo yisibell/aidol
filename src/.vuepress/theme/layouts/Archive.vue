@@ -33,7 +33,7 @@
 
 <script>
 import posts_mixin from '@theme/mixin/posts'
-import paging from '@theme/utils/paging'
+import { paging } from '@aidol/utils'
 import LinkToPost from '@theme/components/linkToPost'
 
 export default {

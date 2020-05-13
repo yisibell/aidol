@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import paging from '@theme/utils/paging'
+import { paging } from '@aidol/utils'
 import posts_mixin from '@theme/mixin/posts'
 import LinkToPost from '@theme/components/linkToPost'
 
