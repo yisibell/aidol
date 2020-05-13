@@ -1,5 +1,4 @@
-
-import SvgIcon from '@theme/components/SvgIcon'// svg component
+import SvgIcon from '@aidol/svg-icon/src/svg-icon'
 
 const req = require.context('./svg', false, /\.svg$/)
 const requireAll = requireContext => requireContext.keys().map(requireContext)
