@@ -5,7 +5,7 @@
 -->
 <template>
   <div v-if="showLiveRe" class="live-re-container">
-    <div id="lv-container" :data-id="type" :data-uid="uid"></div>
+    <div ref="aidol-live-re-container" id="lv-container" :data-id="type" :data-uid="uid"></div>
     <noscript>为正常使用来必力评论功能请激活 JavaScript</noscript>
   </div>
 </template>
@@ -49,6 +49,14 @@ export default {
     init() {
       if (!this.showLiveRe) return
 
+      // clear liveRe container
+      const LiveReContainerEl = this.$refs['aidol-live-re-container']
+
+      if (LiveReContainerEl) {
+        LiveReContainerEl.innerHTML = ''
+      }
+      
+      // create and init liveRe script
       const d = document
       const j = d.createElement('script')
       const aidolLivereScript = d.querySelector('#aidol-livere-script')
@@ -70,23 +78,6 @@ export default {
       window.addEventListener('load', () => {
         this.init()
       })
-      window.addEventListener('scroll', () => {
-        this.removeExtraLv('lv-utils')
-        this.removeExtraLv('lv-comment')
-      })
-    },
-    removeExtraLv(attr) {
-      const livereUtilsScripts = document.querySelectorAll('iframe[title="livere"]')
-      const arr = [].filter.call(livereUtilsScripts, v => v.id.includes(attr))
-
-      if (livereUtilsScripts) {
-        arr.length > 1 && arr.forEach((dom, i, arr) => {
-          const { id } = dom
-          if (i !== arr.length -1) {
-            dom.remove()
-          }
-        })
-      }
     }
   }
 }

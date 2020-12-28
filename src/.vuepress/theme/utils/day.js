@@ -1,5 +1,5 @@
-import moment from 'moment'
+import dayjs from 'dayjs'
 
 export const formatDay =  (date) => {
-  return moment(date).format("Y-MM-DD")
+  return dayjs(date).format("Y-MM-DD")
 }
