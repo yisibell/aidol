@@ -43,7 +43,10 @@ export default {
     }
   },
   mounted() {
-    this.loadedInit()
+    this.createListeners()
+  },
+  beforeDestroy() {
+    this.removeListeners()
   },
   methods: {
     init() {
@@ -64,8 +67,8 @@ export default {
       if (typeof LivereTower === 'function') return
 
       j.id = 'aidol-livere-script'
-      j.src = 'https://cdn-city.livere.com/js/embed.dist.js'
-      j.defer = true
+      j.src = `https://cdn-city.livere.com/js/embed.dist.js`
+      j.setAttribute('async', true)
       
       if (aidolLivereScript) {
         aidolLivereScript.remove()
@@ -74,10 +77,24 @@ export default {
       d.body.appendChild(j)
 
     },
-    loadedInit() {
-      window.addEventListener('load', () => {
-        this.init()
-      })
+    clear() {
+      const iframes = document.querySelectorAll('#lv-container iframe')
+
+      if (iframes && iframes.length > 0) {
+        [...iframes].filter(el => {
+          return el.id.includes('comment')
+        }).forEach((el, i) => {
+          if (i > 0) el.remove()
+        })
+      }
+    },
+    createListeners() {
+      window.addEventListener('load', this.init)
+      window.addEventListener('scroll', this.clear)
+    },
+    removeListeners() {
+      window.removeEventListener('load', this.init)
+      window.removeEventListener('scroll', this.clear)
     }
   }
 }
