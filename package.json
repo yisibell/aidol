@@ -1,6 +1,6 @@
 {
   "name": "aidol",
-  "version": "1.8.0",
+  "version": "1.8.1",
   "description": "A personal blog based on aidol.",
   "scripts": {
     "dev": "vuepress dev src",
@@ -14,7 +14,8 @@
     "aidol",
     "vuepress",
     "theme",
-    "vue"
+    "vue",
+    "blog"
   ],
   "author": "elenh",
   "license": "MIT",
