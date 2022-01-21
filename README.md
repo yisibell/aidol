@@ -21,18 +21,19 @@ npm i @aidol/cli -g
 ## Usage
 
 ``` bash
-aidol init <projectName>
-cd <projectName>
-npm install
-npm run dev
+$ aidol init <projectName>
+$ cd <projectName>
+
+# npm
+$ npm install
+$ npm run dev
+
+# yarn
+$ yarn install
+$ yarn dev
 ```
 
 # Logs
 
-- 2020-12-28 (version 1.8.0)
-
-1. 替换 `node-sass` 为 `sass` 编译 `scss` 文件。
-2. 替换 `moment` 为 `dayjs` 处理日期。
-3. **BugFix** 解决了 **来必力** 评论系统重复渲染插件实例问题。
-4. 其他模块升级。
+<a href="https://gitee.com/elenhong/aidol/blob/master/CHANGELOG.md">CHANGELOG</a>
 

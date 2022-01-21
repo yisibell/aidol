@@ -29,13 +29,13 @@
 </template>
 
 <script>
-import { paging } from '@aidol/utils'
-import posts_mixin from '@theme/mixin/posts'
+import { paging } from 'pagein'
+import postsMixin from '@theme/mixin/posts'
 import LinkToPost from '@theme/components/linkToPost'
 
 export default {
   name: 'Home',
-  mixins: [posts_mixin],
+  mixins: [postsMixin],
   components: {
     LinkToPost
   },

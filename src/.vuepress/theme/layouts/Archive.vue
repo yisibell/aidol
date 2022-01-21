@@ -4,7 +4,7 @@
 
     <el-timeline>
       <el-timeline-item v-for="(v, i) in posts_in_year" :key="i" :timestamp="v.year" placement="top">
-        <el-card v-for="(item, k) in v.posts" class="mb-15">
+        <el-card v-for="(item, k) in v.posts" :key="k" class="mb-15">
           <link-to-post :path="item.path" :text="item.title" :passcode="item.passcode" type="h4" class="mb-10" />
           <div class="flex-inline fc-info f-12">
             <span>标签：</span>
@@ -32,13 +32,13 @@
 </template>
 
 <script>
-import posts_mixin from '@theme/mixin/posts'
-import { paging } from '@aidol/utils'
+import postsMixin from '@theme/mixin/posts'
+import { paging } from 'pagein'
 import LinkToPost from '@theme/components/linkToPost'
 
 export default {
   name: 'Archive',
-  mixins: [posts_mixin],
+  mixins: [postsMixin],
   components: {
     LinkToPost
   },
