@@ -1,6 +1,6 @@
 {
   "name": "aidol",
-  "version": "1.8.1",
+  "version": "1.9.0",
   "description": "A personal blog based on aidol.",
   "scripts": {
     "dev": "vuepress dev src",
@@ -21,7 +21,8 @@
   "license": "MIT",
   "devDependencies": {
     "@vuepress/plugin-back-to-top": "^1.4.0",
-    "sass": "^1.30.0",
+    "cz-conventional-changelog": "^3.3.0",
+    "sass": "~1.32.6",
     "sass-loader": "^8.0.2",
     "svg-sprite-loader": "^4.2.1",
     "vuepress": "^1.3.1",
@@ -29,10 +30,11 @@
   },
   "dependencies": {
     "@aidol/svg-icon": "^1.2.0",
-    "@aidol/utils": "^1.6.1",
+    "async-validator": "^1.11.5",
     "dayjs": "^1.9.8",
     "element-ui": "^2.13.0",
-    "lodash": "^4.17.15"
+    "lodash": "^4.17.15",
+    "pagein": "^1.0.1"
   },
   "browserslist": [
     "> 1%",
