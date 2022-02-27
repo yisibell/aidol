@@ -1,10 +1,10 @@
 <template>
   <el-card class="post-menu scrollbar-mini">
-    <div class="f-13 mb-15 flex-center">文章目录</div>
+    <div class="fs-13 mb-15 flex-center">文章目录</div>
     <el-tree :data="postMenu" :props="defaultProps" node-key="id">
       <template v-slot="{ data }">
         <a :href="`#${data.slug}`" class="post-menu__title">
-          <span class="text_overflow_1">{{data.title}}</span>
+          <span class="text-truncate">{{data.title}}</span>
         </a>
       </template>
     </el-tree>

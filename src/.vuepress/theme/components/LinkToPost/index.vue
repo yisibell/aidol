@@ -1,6 +1,6 @@
 <template>
   <el-button v-if="type==='btn'" size="mini" type="info" @click="link">{{ text }} <svg-icon v-if="passcode" icon-class="lock" /></el-button>
-  <h4 v-else class="f-16 cursor-pointer" @click="link">{{ text }}</h4>
+  <h4 v-else class="fs-16 cursor-pointer" @click="link">{{ text }}</h4>
 </template>
 
 <script>

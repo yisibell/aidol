@@ -1,11 +1,11 @@
 <template>
   <div class="idou-home">
     <div class="post-item" v-for="(v) in posts" :key="v.key">
-      <div class="fc-success f-20">{{ v.title }}</div>
+      <div class="fc-success fs-20">{{ v.title }}</div>
       <div class="mt-5">
         <el-tag v-for="(e,i) in v.tags" :key="i" size="mini" class="mr-8 mb-4 mt-4">{{ e }}</el-tag>
-        <span class="f-12 fc-info mr-15">发布于：{{v.date}}</span>
-        <span class="f-12 fc-info mr-15">分类于：{{v.categories.join('，')}}</span>
+        <span class="fs-12 fc-info mr-15">发布于：{{v.date}}</span>
+        <span class="fs-12 fc-info mr-15">分类于：{{v.categories.join('，')}}</span>
       </div>
       <div v-html="v.excerpt"></div>
       <div class="flex-center mb-15">

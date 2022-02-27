@@ -1,7 +1,7 @@
 <template>
   <div class="categories">
     <div class="categories-title mb-15">All Categories</div>
-    <div class="text-center f-14">目前共计 {{origin_categories.length}} 个分类</div>
+    <div class="text-center fs-14">目前共计 {{origin_categories.length}} 个分类</div>
     <ul class="categories-content">
       <li 
         v-for="(v,i) in origin_categories" 
@@ -10,7 +10,7 @@
         @click="goPostList(v)"
       >
         {{ v.name }} 
-        <span class="f-14 count">({{v.count}})</span>
+        <span class="fs-14 count">({{v.count}})</span>
       </li>
     </ul>
   </div>

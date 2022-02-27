@@ -6,13 +6,13 @@
       <el-timeline-item v-for="(v, i) in posts_in_year" :key="i" :timestamp="v.year" placement="top">
         <el-card v-for="(item, k) in v.posts" :key="k" class="mb-15">
           <link-to-post :path="item.path" :text="item.title" :passcode="item.passcode" type="h4" class="mb-10" />
-          <div class="flex-inline fc-info f-12">
+          <div class="flex-inline fc-info fs-12">
             <span>标签：</span>
             <el-tag v-for="(e, j) in item.tags" :key="j" size="mini" class="mr-6 mt-3 mb-3">{{ e }}</el-tag>
             <span>分类：</span>
             <span class="mr-15">{{ item.categories.join('，') }}</span>
           </div>
-          <div class="f-12 fc-info"><span>{{ item.date }}</span></div>
+          <div class="fs-12 fc-info"><span>{{ item.date }}</span></div>
         </el-card>
       </el-timeline-item>
     </el-timeline>

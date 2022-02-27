@@ -2,11 +2,11 @@
   <div class="layout">
     <h2 class="layout-title">{{ page.title }}</h2>
     <div class="flex-center layout-body">
-      <svg-icon icon-class="date" class="mr-6 f-14" />
+      <svg-icon icon-class="date" class="mr-6 fs-14" />
       <span class="mr-8">发表于</span>
       <span>{{ date || '未知时间' }}</span>
       <span class="ml-10 mr-10 pb-2"> | </span>
-      <svg-icon icon-class="category" class="mr-6 f-14" />
+      <svg-icon icon-class="category" class="mr-6 fs-14" />
       <span class="mr-8">分类于</span>
       <span class="cursor-pointer category mr-10" @click="goHome">{{ categories || '暂无分类' }}</span>
       <div v-if="busuanzi.open" class="flex-center">
