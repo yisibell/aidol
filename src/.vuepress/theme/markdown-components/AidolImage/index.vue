@@ -1,7 +1,7 @@
 <template>
   <div class="aidol-image"> 
     <el-image v-bind="$props" :src="url" :preview-src-list="previewSrcList"></el-image>
-    <div class="flex-center f-12 fc-info mt-6"> 共 {{imgNum}} 张图</div>
+    <div class="flex-center fs-12 fc-info mt-6"> 共 {{imgNum}} 张图</div>
   </div>
 </template>
 

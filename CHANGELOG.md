@@ -1,5 +1,12 @@
 # CHANGE LOGS
 
+- 2022-02-27（version 1.10.0）
+
+1. `element-ui` 升级至 `v2.15.7`。
+2. `sass` 无需再固定补丁版本，原因是，`element-ui` 已使用最新的 `dart-sass` 语法。
+3. 添加 `toolkitcss` 样式工具库。
+4. `dayjs` 时间格式显示问题修复。
+
 - 2021-01-21 (version 1.9.0)
 
 1. 移除 `@aidol/utils` 。

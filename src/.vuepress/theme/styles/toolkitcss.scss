@@ -1,0 +1,30 @@
+// 自定义 toolkitcss 变量
+
+$--font-size-upper-limit-value: 50;
+
+@import '~toolkitcss/src/index';
+
+// 设置字体颜色
+.fc-primary {
+  color: $--color-primary !important;
+}
+
+.fc-success {
+  color: $--color-success !important;
+}
+
+.fc-warning {
+  color: $--color-warning !important;
+}
+
+.fc-danger {
+  color: $--color-danger !important;
+}
+
+.fc-info {
+  color: $--color-info !important;
+}
+
+.fc-white {
+  color: #fff !important;
+}

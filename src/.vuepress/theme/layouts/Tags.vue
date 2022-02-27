@@ -1,7 +1,7 @@
 <template>
  <div class="tags">
     <div class="tags-title mb-15">All Tags</div>
-    <div class="text-center f-14">目前共计 {{origin_tags.length}} 个标签</div>
+    <div class="text-center fs-14">目前共计 {{origin_tags.length}} 个标签</div>
     <div class="flex-center mt-20">
       <el-tag 
         v-for="(v, i) in origin_tags" 
