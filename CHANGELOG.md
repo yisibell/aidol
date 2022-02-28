@@ -1,5 +1,9 @@
 # CHANGE LOGS
 
+- 2022-02-28（version 1.11.0）
+
+1. 更新 `@aidol/svg-icon` 导入方式。
+
 - 2022-02-27（version 1.10.0）
 
 1. `element-ui` 升级至 `v2.15.7`。
