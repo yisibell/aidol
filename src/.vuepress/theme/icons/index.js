@@ -1,4 +1,4 @@
-import SvgIcon from '@aidol/svg-icon'
+import SvgIcon from '@aidol/svg-icon/src/svg-icon'
 
 const req = require.context('./svg', false, /\.svg$/)
 const requireAll = requireContext => requireContext.keys().forEach(requireContext)
