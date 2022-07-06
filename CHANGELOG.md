@@ -1,6 +1,6 @@
 # CHANGE LOGS
 
-- 2022-02-28（version 1.11.0）
+- 2022-02-28（version 1.11.1）
 
 1. 更新 `@aidol/svg-icon` 导入方式。
 
