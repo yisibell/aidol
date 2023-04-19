@@ -9434,10 +9434,10 @@ vue-style-loader@^4.1.0:
     hash-sum "^1.0.2"
     loader-utils "^1.0.2"
 
-vue-symbol-icon@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/vue-symbol-icon/-/vue-symbol-icon-2.1.0.tgz#d42854e26dd4be32964556252088a61b14d0dcbd"
-  integrity sha512-mn0VKcdRdwjengYG51sdBls9f4jni5icUcXQQXwDcE2cbv/EXD137n5oCHU4Yx/RkUFw1+/ViIAgGB8fTLfePA==
+vue-symbol-icon@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/vue-symbol-icon/-/vue-symbol-icon-2.1.1.tgz#952d6af6dd74b5e4ad82c50b856cc664001ad645"
+  integrity sha512-uMjapyJCghcj5cxHAkaipOl7kaZQ9fdS1D8A7WIO2R11m2KvhUe0xWYhKs/Vvdc0erd/O7z3qzZskQiu4JY2Lw==
 
 vue-template-compiler@^2.6.10:
   version "2.6.14"
