@@ -4,7 +4,8 @@
   "description": "A personal blog based on aidol.",
   "scripts": {
     "dev": "vuepress dev src",
-    "build": "vuepress build src"
+    "build": "vuepress build src",
+    "release": "changelogen --release && git push --follow-tags"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,7 @@
   "license": "MIT",
   "devDependencies": {
     "@vuepress/plugin-back-to-top": "^1.4.0",
+    "changelogen": "^0.5.3",
     "cz-conventional-changelog": "^3.3.0",
     "sass": "^1.49.9",
     "sass-loader": "^8.0.2",
