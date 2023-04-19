@@ -8,7 +8,7 @@ const install = Vue => {
     TooltipIcon,
     LiveRe,
     ReadProgress,
-    BShare
+    BShare,
     
   ].forEach(v => {
     Vue.component(v.name, v)

@@ -2,7 +2,8 @@ import ElementUI from 'element-ui'
 import CustomUI from './components'
 import Layer from './utils/layer'
 import MarkdownComponents from './markdown-components'
-import SvgIcon from 'vue-symbol-icon'
+import SvgIcon from 'vue-symbol-icon/src/components'
+import ClientOnly from 'vue-client-only'
 
 import './icons'
 import './styles/main.scss'
@@ -17,9 +18,11 @@ export default ({
   // ...做一些其他的应用级别的优化
   Vue.use(ElementUI)
 
+  Vue.component('ClientOnly', ClientOnly)
+
   // svg图标
   Vue.use(SvgIcon)
-
+  
   // 自定义UI
   Vue.use(CustomUI)
 
