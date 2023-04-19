@@ -35,5 +35,5 @@ $ yarn dev
 
 # Logs
 
-<a href="https://gitee.com/elenhong/aidol/blob/master/CHANGELOG.md">CHANGELOG</a>
+[CHANGE LOG](./CHANGELOG.md)
 
