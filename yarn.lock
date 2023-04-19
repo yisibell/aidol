@@ -2,11 +2,6 @@
 # yarn lockfile v1
 
 
-"@aidol/svg-icon@^1.3.0":
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/@aidol/svg-icon/-/svg-icon-1.3.0.tgz#ccf59ae10ca6dac2710d9349b5d99b54404f86d7"
-  integrity sha512-FYyrIHHCwEQUfBXPZJq0c//qur2J+tp3E+9XrhnyOxyrLOjFC64zf05/Wjh3cffTSWT7uzuH9+ACYqymIt/pXg==
-
 "@ampproject/remapping@^2.1.0":
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/@ampproject/remapping/-/remapping-2.1.2.tgz#4edca94973ded9630d20101cd8559cedb8d8bd34"
@@ -3619,7 +3614,7 @@ electron-to-chromium@^1.4.71:
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.73.tgz#422f6f514315bcace9615903e4a9b6b9fa283137"
   integrity sha512-RlCffXkE/LliqfA5m29+dVDPB2r72y2D2egMMfIy3Le8ODrxjuZNVo4NIC2yPL01N4xb4nZQLwzi6Z5tGIGLnA==
 
-element-ui@^2.15.7:
+element-ui@2.15.7:
   version "2.15.7"
   resolved "https://registry.yarnpkg.com/element-ui/-/element-ui-2.15.7.tgz#9e5f8461edb53cfd89a88614b6caa82bd110ee38"
   integrity sha512-+J6rnXajxzLwV6w8Q6bf7Yqzk1FO1ewbIrCy/4B5alnd7tj8WEpfQoAvISirVaUGVGy77d9Ji3o2bF4f0AsJLQ==
@@ -8967,6 +8962,11 @@ vue-style-loader@^4.1.0:
   dependencies:
     hash-sum "^1.0.2"
     loader-utils "^1.0.2"
+
+vue-symbol-icon@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/vue-symbol-icon/-/vue-symbol-icon-2.1.0.tgz#d42854e26dd4be32964556252088a61b14d0dcbd"
+  integrity sha512-mn0VKcdRdwjengYG51sdBls9f4jni5icUcXQQXwDcE2cbv/EXD137n5oCHU4Yx/RkUFw1+/ViIAgGB8fTLfePA==
 
 vue-template-compiler@^2.6.10:
   version "2.6.14"
