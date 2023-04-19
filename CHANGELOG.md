@@ -25,3 +25,26 @@
 2. 替换 `moment` 为 `dayjs` 处理日期。
 3. **BugFix** 解决了 **来必力** 评论系统重复渲染插件实例问题。
 4. 其他模块升级。
+## v1.11.2
+
+[compare changes](https://gitee.com/elenhong/aidol/compare/v1.11.1...v1.11.2)
+
+
+### 💅 Refactors
+
+  - **deps:** Use vue-symbol-icon instead of @aidol/svg-icon (59f1593)
+
+### 📖 Documentation
+
+  - Update docs (ad72b0d)
+
+### 🏡 Chore
+
+  - Gitignore (82d9091)
+  - **changelog:** Add changelog (13539a5)
+
+### ❤️  Contributors
+
+- Wenqing <wenqing@kerrylan.com>
+- Elenh ([@yisibell](http://github.com/yisibell))
+
