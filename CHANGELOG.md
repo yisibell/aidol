@@ -1,5 +1,28 @@
 # CHANGE LOGS
 
+## v1.11.3
+
+[compare changes](https://gitee.com/elenhong/aidol/compare/v1.11.2...v1.11.3)
+
+
+### 🩹 Fixes
+
+  - Vue-symbol-icon error (47a63be)
+  - Vue-symbol-icon use error (bcf75b7)
+
+### 🏡 Chore
+
+  - Changelog (ee3dd8c)
+  - **docs:** Update readme (361d45e)
+
+### 🤖 CI
+
+  - Add deploy workflow (deedadb)
+
+### ❤️  Contributors
+
+- Wenqing <wenqing@kerrylan.com>
+
 ## v1.11.2
 
 [compare changes](https://gitee.com/elenhong/aidol/compare/v1.11.1...v1.11.2)

@@ -1,6 +1,6 @@
 {
   "name": "aidol",
-  "version": "1.11.2",
+  "version": "1.11.3",
   "description": "A personal blog based on vuepress.",
   "scripts": {
     "dev": "vuepress dev src",
