@@ -1,6 +1,6 @@
 {
   "name": "aidol",
-  "version": "1.11.2",
+  "version": "1.11.3",
   "description": "A personal blog based on vuepress.",
   "scripts": {
     "dev": "vuepress dev src",
@@ -40,7 +40,8 @@
     "lodash": "^4.17.15",
     "pagein": "^1.0.1",
     "toolkitcss": "^1.1.1",
-    "vue-symbol-icon": "^2.1.1"
+    "vue-client-only": "^2.1.0",
+    "vue-symbol-icon": "^2.1.2"
   },
   "browserslist": [
     "> 1%",
