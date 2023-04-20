@@ -6,7 +6,8 @@
     "dev": "vuepress dev src",
     "build": "vuepress build src",
     "release": "changelogen --release && git push --follow-tags",
-    "preview": "http-server ./dist"
+    "preview": "http-server ./dist",
+    "deploy": "npm run build && git add . && git commit -m 'chore: rebuild' && git push"
   },
   "repository": {
     "type": "git",
