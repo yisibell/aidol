@@ -1,42 +1,32 @@
-name: Deploy
-
+name: Build and Deploy
 on:
   push:
     branches:
       - docs
       - release/*
-
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
-      # Set a Node.js version
-      - name: Use Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
+    
+    # Set a Node.js version
+    - name: Use Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16
 
-      # pull code
-      - name: Checkout code
-        uses: actions/checkout@v3
+    # using yarn to install deps
+    - run: npm i -g yarn
 
-      # using yarn to install deps
-      - run: npm i -g yarn
+    # pull code
+    - name: Checkout
+      uses: actions/checkout@master
 
-      # build to static
-      - run: yarn install && yarn build
-
-      # - name: Build Example
-      #   run: yarn install && yarn build
-      #   working-directory: /
-
-      # deploy to `docs` branch
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@v4.4.1
-        with:
-          folder: dist
-          silent: true
-          clean: true
-          branch: gh-pages
-          single-commit: true
+    - name: vuepress-deploy
+      uses: jenkey2011/vuepress-deploy@master
+      env:
+        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        TARGET_REPO: yisibell/aidol
+        TARGET_BRANCH: gh-pages
+        BUILD_SCRIPT: yarn && yarn build
+        BUILD_DIR: dist/
