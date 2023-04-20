@@ -5,6 +5,8 @@ on:
     branches:
       - docs
       - release/*
+permissions:
+  contents: write
 
 jobs:
   deploy:
@@ -33,8 +35,10 @@ jobs:
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4.4.1
         with:
+          # The folder the action should deploy.
           folder: dist
           silent: true
           clean: true
+          # This is the branch you wish to deploy to, for example, `gh-pages` or `docs`. Defaults to `gh-pages`.
           branch: gh-pages
           single-commit: true
