@@ -6,10 +6,12 @@ function resolve(dir) {
   return path.resolve(__dirname, dir)
 }
 
+const dest = path.resolve(process.cwd(), './dist')
+
 module.exports = {
   base: deploy.base,
   title: siteInfo.title,
-  dest: './dist',
+  dest,
   description: siteInfo.description,
   themeConfig,
   plugins: [
