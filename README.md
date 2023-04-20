@@ -1,32 +1,15 @@
 # aidol
 
-A theme for vuePress but not only theme.
+`aidol` 是一个基于 `vuepress` 构建的博客模板项目，可用于快速开发生成属于你自己的静态博客。
 
-## Introduction
-
-`aidol` 是 `@aidol/cli` 的默认模板，用于快速开发生成属于你自己的静态博客。`aidol` 正在持续更新中。
-
-<a href="http://elenhong.gitee.io/aidol/" target="_blank">aidol 演示地址</a>
-
-# @aidol/cli
-
-A command line tool for quickly building blog sites.
-
-## Installation
-
-``` bash
-npm i @aidol/cli -g
-```
+[效果展示](https://hongwenqing.com/aidol/)
 
 ## Usage
 
 ``` bash
-$ aidol init <projectName>
+# clone repo
+$ git clone https://github.com/yisibell/aidol.git <projectName>
 $ cd <projectName>
-
-# npm
-$ npm install
-$ npm run dev
 
 # yarn
 $ yarn install
