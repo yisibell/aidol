@@ -27,8 +27,8 @@ jobs:
       - run: npm i -g yarn
 
       # build to static
-      - name: Build Example
-        run: yarn install && yarn build
+      # - name: Build Example
+      #   run: yarn install && yarn build
         # working-directory: example
 
       # deploy to a branch
