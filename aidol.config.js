@@ -25,6 +25,7 @@ module.exports = {
     weibo: ''
   },
   deploy: {
+    // base: '/'
     base: '/aidol/'
   },
   siteInfo: {

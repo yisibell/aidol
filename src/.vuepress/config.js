@@ -1,8 +1,9 @@
 const path = require('path')
 const themeConfig = require('../../aidol.config.js')
 const { siteInfo, deploy } = themeConfig
+
 function resolve(dir) {
-  return path.join(__dirname, dir)
+  return path.resolve(__dirname, dir)
 }
 
 module.exports = {
